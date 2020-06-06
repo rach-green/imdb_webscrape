@@ -59,7 +59,7 @@ def updateEntry(column_name, id, value):
 
    mycursor.execute("CREATE TABLE IF NOT EXISTS movies (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), year VARCHAR(255))")
 
-   mycursor.execute("UPDATE movies SET " + column_name + " = " + value + " WHERE id = " + str(id))
+   mycursor.execute("UPDATE movies SET " + column_name + " = '" + value + "' WHERE id = " + str(id))
    mydb.commit()
    mydb.close()
 
