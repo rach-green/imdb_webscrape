@@ -26,8 +26,8 @@ mycursor.execute("SELECT * FROM movies")
 
 records = mycursor.fetchall()
 for row in records:
-    print(row[0])
-    print(". ")
+    print(row[0], end = '')
+    print(". ", end = '')
     print(row[1])
 
 mydb.close()
