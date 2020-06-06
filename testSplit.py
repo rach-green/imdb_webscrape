@@ -6,6 +6,9 @@ url = 'https://www.imdb.com/search/title/?groups=top_250&sort=user_rating'
 resp = requests.get(url)
 soup = BeautifulSoup(resp.text, features = "lxml")
 
+cursor = mysqlsimple.connectToDB()[0]
+db = mysqlsimple.connectToDB()[1]
+
 #getting titles of all top_250
 llist = soup.find_all('h3',{'class':"lister-item-header"})
 #x is an inidividual movie
@@ -19,10 +22,10 @@ for x in llist:
     for y in x.find_all('span',{'class':'lister-item-index'}):
         ranking = y.text
         #print(ranking)
-    mysqlsimple.addRecord(int(ranking[:-1]), title, year)
+    mysqlsimple.addRecord(int(ranking[:-1]), title, year, cursor, db)
 
-mysqlsimple.printDB()
-
+mysqlsimple.printDB(db, cursor)
+mysqlsimple.closeDB(db)
 
 
 # content = soup.find_all('p', {'class':'text-muted'})
