@@ -21,16 +21,21 @@ for x in llist:
         #print(ranking)
     mysqlsimple.addRecord(int(ranking[:-1]), title, year)
 
+
+
+
+count = 1
+content = soup.find_all('p', {'class':'text-muted'})
+#mysqlsimple.addColumn("rating")
+for x in content:
+    for y in x.find_all('span',{'class':'certificate'}):
+        rating = y.text
+        # print(rating)
+    mysqlsimple.updateEntry("rating", count, rating)
+    count+=1
+
 mysqlsimple.printDB()
 
-
-
-# content = soup.find_all('p', {'class':'text-muted'})
-# for x in content:
-#     for y in x.find_all('span',{'class':'certificate'}):
-#         ratings = y.text
-#         print(ratings)
-#
 # people = soup.find_all('p',{'class':""})
 # for x in people:
 #     for y in x.find_all('a'): #think about adding span for director/actor
