@@ -103,6 +103,7 @@ def printDB():
         print(row[2], end = " ")
         print(row[3], end = " ")
         print(row[4])
+        print("summary: " + row[5])
     mydb.close()
 
 def closeDB():
