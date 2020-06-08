@@ -22,25 +22,39 @@ for x in llist:
     mysqlsimple.addRecord(int(ranking[:-1]), title, year)
 
 
-
-
 count = 1
 content = soup.find_all('p', {'class':'text-muted'})
-#mysqlsimple.addColumn("rating")
+
+try:
+    mysqlsimple.addColumn("rating", "VARCHAR(255)")
+except:
+    pass
+
 for x in content:
     for y in x.find_all('span',{'class':'certificate'}):
         rating = y.text
         # print(rating)
     mysqlsimple.updateEntry("rating", count, rating)
+    count+=1 #corresponds to ranking
+
+try:
+    mysqlsimple.addColumn("people", "TEXT")
+except:
+    pass
+
+count = 1
+people = soup.find_all('p',{'class':""})
+for x in people:
+    string = ""
+    for y in x.find_all('a'):
+        string += str(y.text) + ', '
+    string = string[:-2]
+    string = string.replace("'", "")
+    mysqlsimple.updateEntry("people", count, string)
     count+=1
 
 mysqlsimple.printDB()
 
-# people = soup.find_all('p',{'class':""})
-# for x in people:
-#     for y in x.find_all('a'): #think about adding span for director/actor
-#             people = y.text
-#             print(people)
 #
 # metascores = soup.find_all('span',{'class':'metascore'})
 # for x in metascores:
