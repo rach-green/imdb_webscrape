@@ -2,43 +2,52 @@ import mysql.connector
 
 
 class Connect():
-    def __init__(self):
+    def __init__(self, db_name, table_name, column_name):
         self.connection =  mysql.connector.connect(
             host='localhost',
             user='root',
             password='dalehollow'
             )
         self.cursor = self.connection.cursor()
+        self.addDB(db_name)
+        self.db = db_name
+        self.createTB(table_name, column_name)
 
-    def addDB(self):
-        self.cursor.execute("CREATE DATABASE IF NOT EXISTS mydatabase")
+    def changeDB(self, db_name):
+        self.cursor.execute("CREATE DATABASE IF NOT EXISTS " + db_name)
+        self.db = db_name
+        self.connection.commit()
+
+    def addDB(self, db_name):
+        self.cursor.execute("CREATE DATABASE IF NOT EXISTS " + db_name)
         self.connection.commit()
 
     def useDB(self):
     #must use before able to
-        self.cursor.execute("USE mydatabase")
+        self.cursor.execute("USE " + self.db)
         self.connection.commit()
 
-    def createTB(self):
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS movies (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), year VARCHAR(255))")
+    def createTB(self, table_name, column_name):
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS " + table_name + " (id INT AUTO_INCREMENT PRIMARY KEY, " + column_name +" VARCHAR(255)")#, year VARCHAR(255))")
         self.connection.commit()
 
-    def addColumn(self, column_name, type):
+    def addColumn(self, table_name, column_name, type):
         self.useDB()
-        self.cursor.execute("ALTER TABLE movies ADD COLUMN " + column_name + " "+ type)
+        self.cursor.execute("ALTER TABLE " + table_name + " ADD COLUMN " + column_name + " "+ type)
         self.connection.commit()
-
-    def updateEntry(self, column_name, id, value):
+    #single insert of data into the table
+    def updateEntry(self, table_name, column_name, id, value):
         self.useDB()
-        self.cursor.execute("UPDATE movies SET " + column_name + " = '" + value + "' WHERE id = " + str(id))
+        self.cursor.execute("UPDATE " + table_name + " SET " + column_name + " = '" + value + "' WHERE id = " + str(id))
         self.connection.commit()
 
-    def addData(self, rank, title, year):
+    #adding an entry to the table
+    def addEntry(self, table_name, id, column_content, column_name):
         #must have columns already
         self.useDB()
-        mySql_insert_query = """INSERT IGNORE INTO movies (id, title, year) VALUES (%s, %s, %s) """
-        recordTuple = (rank, title, year)
-        self.cursor.execute(mySql_insert_query, recordTuple)
+        # mySql_insert_query = """INSERT IGNORE INTO movies (id, " + column_name VALUES (%s, %s) """
+        recordTuple = (id, column_content)
+        self.cursor.execute("INSERT IGNORE INTO " + table_name + " (id, " + column_name + ") VALUES (%s, %s) ", recordTuple)
         self.connection.commit()
 
     def printDB(self):
