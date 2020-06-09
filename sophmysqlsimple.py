@@ -28,7 +28,8 @@ class Connect():
         self.connection.commit()
 
     def createTB(self, table_name, column_name):
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS " + table_name + " (id INT AUTO_INCREMENT PRIMARY KEY, " + column_name +" VARCHAR(255)")#, year VARCHAR(255))")
+        self.useDB()
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS " + table_name + " (id INT AUTO_INCREMENT PRIMARY KEY, " + column_name +" VARCHAR(255))")
         self.connection.commit()
 
     def addColumn(self, table_name, column_name, type):
@@ -51,6 +52,7 @@ class Connect():
         self.connection.commit()
 
     def printDB(self):
+        self.useDB()
         self.cursor.execute("SELECT * FROM movies")
         records = self.cursor.fetchall()
         for row in records:
@@ -61,4 +63,5 @@ class Connect():
             print(row[4])
 
     def closeDB(self):
+        self.useDB()
         self.connection.close()
