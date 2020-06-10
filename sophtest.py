@@ -67,12 +67,19 @@ def getNextLink():
     link = -1
     for x in pglink:
         for a_tag in x.find_all('a'): #a_tag is a dictionary of a specific movie
-            if a_tag.text != "Previous":
+            if "Previous" not in a_tag.text:
                 link = a_tag['href'] #getting value of dictionary key href
                 if not link.startswith('http'):
                     link = "https://imdb.com"+link
-    print("link to next page " + link)
+    # print("link to next page " + strlink)
     return link
+
+def addColumn(table_name, column_title, type):
+    try:
+        connection.addColumn(table_name, column_title, type)
+    except:
+        pass
+
 
 url = 'https://www.imdb.com/search/title/?groups=top_250&sort=user_rating'
 resp = requests.get(url)
@@ -84,22 +91,10 @@ connection.createTB("movies", "title")
 
 table_name = "movies"
 ## TODO: make this into a helper
-try:
-    connection.addColumn(table_name, "year", "VARCHAR(255)")
-except:
-    pass
-try:
-    connection.addColumn(table_name, "people", "TEXT")
-except:
-    pass
-try:
-    connection.addColumn(table_name, "rating", "VARCHAR(255)")
-except:
-    pass
-try:
-    connection.addColumn(table_name, "summary", "TEXT")
-except:
-    pass
+addColumn(table_name, "year", "VARCHAR(255)")
+addColumn(table_name, "people", "TEXT")
+addColumn(table_name, "rating", "VARCHAR(255)")
+addColumn(table_name, "summary", "TEXT")
 
 addToDB()
 print("finished first page")

@@ -66,6 +66,7 @@ class Connect():
             print(row[2], end = " ")
             print(row[3], end = " ")
             print(row[4])
+            print(row[5])
 
     def closeDB(self):
         self.useDB()
