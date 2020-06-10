@@ -4,10 +4,12 @@ import sophmysqlsimple
 
 def addToDB():
     dlist = soup.find_all('div',{'class':"lister-item-content"})
+    print("Dlist length: " + str(len(dlist)))
     for d_tag in dlist:
         ranking = -1
+        print("Ranking at top of loop:" + str(ranking))
         #grabbing h3 tag content
-        hlist = soup.find_all('h3',{'class':"lister-item-header"})
+        hlist = d_tag.find_all('h3',{'class':"lister-item-header"})
         for h_tag in hlist:
             for y in h_tag.find_all('a'):
                 title = y.text
@@ -19,6 +21,7 @@ def addToDB():
                 ranking = y.text
             summary = findSummary(h_tag)
             ranking = int(ranking[:-1])
+            print("Number:" + str(ranking))
             connection.addEntry(table_name, ranking, title, "title")
             connection.updateEntry(table_name, "year", ranking, year)
             connection.updateEntry(table_name, "summary",ranking, summary)
@@ -47,7 +50,7 @@ def findUrl(h_tag):
 
 def findSummary(h_tag):
     url = findUrl(h_tag)
-    print("Summary url: " + url)
+    # print("Summary url: " + url)
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, features = "lxml")
     summaries = soup.find_all('div', {'class':"summary_text"})
@@ -68,6 +71,7 @@ def getNextLink():
                 link = a_tag['href'] #getting value of dictionary key href
                 if not link.startswith('http'):
                     link = "https://imdb.com"+link
+    print("link to next page " + link)
     return link
 
 url = 'https://www.imdb.com/search/title/?groups=top_250&sort=user_rating'
@@ -75,6 +79,9 @@ resp = requests.get(url)
 soup = BeautifulSoup(resp.text, features = "lxml")
 #constructor: making connect class object.
 connection = sophmysqlsimple.Connect("mydatabase", "movies", "title")
+connection.dropTB("movies")
+connection.createTB("movies", "title")
+
 table_name = "movies"
 ## TODO: make this into a helper
 try:
@@ -95,6 +102,7 @@ except:
     pass
 
 addToDB()
+print("finished first page")
 while(getNextLink() != -1):
     url = getNextLink()
     resp = requests.get(url)

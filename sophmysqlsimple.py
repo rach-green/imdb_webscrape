@@ -32,6 +32,11 @@ class Connect():
         self.cursor.execute("CREATE TABLE IF NOT EXISTS " + table_name + " (id INT AUTO_INCREMENT PRIMARY KEY, " + column_name +" VARCHAR(255))")
         self.connection.commit()
 
+    def dropTB(self, table_name):
+        self.useDB()
+        self.cursor.execute("DROP TABLE IF EXISTS " + table_name)
+        self.connection.commit()
+
     def addColumn(self, table_name, column_name, type):
         self.useDB()
         self.cursor.execute("ALTER TABLE " + table_name + " ADD COLUMN " + column_name + " "+ type)
