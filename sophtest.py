@@ -16,6 +16,7 @@ def addToDB():
                 #print(title)
             for y in h_tag.find_all('span',{'class':'lister-item-year'}):
                 year = y.text
+                year = year[-5:-1]
                 #print(year)
             for y in h_tag.find_all('span',{'class':'lister-item-index'}):
                 ranking = y.text
@@ -91,7 +92,7 @@ connection.createTB("movies", "title")
 
 table_name = "movies"
 ## TODO: make this into a helper
-addColumn(table_name, "year", "VARCHAR(255)")
+addColumn(table_name, "year", "INT")
 addColumn(table_name, "people", "TEXT")
 addColumn(table_name, "rating", "VARCHAR(255)")
 addColumn(table_name, "summary", "TEXT")
