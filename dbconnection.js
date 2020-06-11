@@ -21,10 +21,10 @@ connection.connect(function(err) {
   //   if (err) throw err;
   //   console.log(result);
   // });
-  // connection.query("SELECT summary FROM movies WHERE summary LIKE '%violence%'", function (err, result) {
-  //   if (err) throw err;
-  //   console.log(result);
-  // });
+  connection.query("SELECT * FROM movies WHERE summary LIKE '%violence%'", function (err, result) {
+    if (err) throw err;
+    console.log(result);
+  });
   // connection.query("SELECT * FROM movies WHERE year BETWEEN 2016 AND 2020", function (err, result) {
   //   if (err) throw err;
   //   console.log(result);
@@ -33,9 +33,9 @@ connection.connect(function(err) {
   //   if (err) throw err;
   //   console.log(result);
   // });
-  connection.query("SELECT * FROM movies WHERE rating = 'PG' AND summary LIKE '%spirits%'", function (err, result) {
-    if (err) throw err;
-    console.log(result);
-  });
+  // connection.query("SELECT * FROM movies WHERE rating = 'PG'", function (err, result) {
+  //   if (err) throw err;
+  //   console.log(result);
+  // });
   connection.end();
 });

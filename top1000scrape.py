@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-import sophmysqlsimple
+import mysqlhelpers
 
 def addToDB():
     dlist = soup.find_all('div',{'class':"lister-item-content"})
@@ -21,7 +21,10 @@ def addToDB():
             for y in h_tag.find_all('span',{'class':'lister-item-index'}):
                 ranking = y.text
             summary = findSummary(h_tag)
-            ranking = int(ranking[:-1])
+            ranking = ranking[:-1]
+            if ranking == "1,000":
+                ranking = "1000"
+            ranking = int(ranking)
             print("Number:" + str(ranking))
             connection.addEntry(table_name, ranking, title, "title")
             connection.updateEntry(table_name, "year", ranking, year)
@@ -82,11 +85,11 @@ def addColumn(table_name, column_title, type):
         pass
 
 
-url = 'https://www.imdb.com/search/title/?groups=top_250&sort=user_rating'
+url = 'https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&count=100&ref_=adv_prv'
 resp = requests.get(url)
 soup = BeautifulSoup(resp.text, features = "lxml")
 #constructor: making connect class object.
-connection = sophmysqlsimple.Connect("mydatabase", "movies", "title")
+connection = mysqlhelpers.Connect("mydatabase", "movies", "title")
 connection.dropTB("movies")
 connection.createTB("movies", "title")
 
