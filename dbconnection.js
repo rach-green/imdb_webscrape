@@ -21,7 +21,11 @@ connection.connect(function(err) {
   //   if (err) throw err;
   //   console.log(result);
   // });
-  connection.query("SELECT * FROM movies WHERE summary LIKE '%violence%'", function (err, result) {
+  // connection.query("SELECT summary FROM movies WHERE summary LIKE '%violence%'", function (err, result) {
+  //   if (err) throw err;
+  //   console.log(result);
+  // });
+  connection.query("SELECT id FROM movies WHERE people LIKE '%Rajamouli%'", function (err, result) {
     if (err) throw err;
     console.log(result);
   });

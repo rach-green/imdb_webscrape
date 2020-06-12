@@ -36,7 +36,7 @@ def addToDB():
                 rating = y.text
             connection.updateEntry(table_name,"rating", ranking, rating)
         #grabbing people from p tag
-        people = soup.find_all('p',{'class':""})
+        people = d_tag.find_all('p',{'class':""})
         for pe_tag in people:
             pe_string = ""
             for y in pe_tag.find_all('a'):
