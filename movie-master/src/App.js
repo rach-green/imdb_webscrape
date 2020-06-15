@@ -15,21 +15,26 @@ export default class App extends React.Component {
     };
   }
 
-  callAPI() {
-    fetch("http://www.recipepuppy.com/api")
-        .then((res) => {
-            if (res.status===404){
-                this.setState( {movies : 'Test'});
-            }else{
-                this.setState( {movies : 'Test'});
-            }
-        })
-        .then(res => {this.setState( {movies : 'Test'});});
-    }
+  async callAPI() {
+    console.log("enter callapi");
+    let response = await fetch("/movies");
+    let movies = await response.json();
+    this.setState({ movies: JSON.stringify(movies)})
+    // console.log("response:", response);
+    // console.log("response.json:", await response.json());
+    // fetch("/movies")
+    //     .then((res) => console.log("result:",res.text());)
+    //     .then((res) => res.json());
+
+        // .then(res => JSON)
+        // .then(res => {console.log("json:", res)})
+
+    console.log("exit callapi");
+}
 
 
-  componentWillMount() {
-    this.callAPI();
+  async componentWillMount() {
+    await this.callAPI();
     }
   /*
   Given a screen id, swap to that page
@@ -50,9 +55,10 @@ export default class App extends React.Component {
 
   //render the navbar and the current page being looked at
   render() {
-      var movie = this.state.movies;
+      let movie = this.state.movies;
+      console.log("render state",this.state);
     return (
-      <div class="main-container">
+      <div className="main-container">
         <p className="App-intro">;{movie}</p>
       </div>
   );

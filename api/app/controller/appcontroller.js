@@ -9,6 +9,7 @@ exports.list_all_movies = function(req, res) {
     if (err)
       res.send(err);
       console.log('res', movie);
+    // res.set('Content-Type', 'application/json');
     res.send(movie);
   });
 };
