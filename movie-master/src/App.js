@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 
-
 //CONSTANTS
 import { screenId } from "./constants.js";
 
@@ -10,18 +9,24 @@ export default class App extends React.Component {
     super(props);
     //initialize state
     this.state = {
-        movies: ''
+        movies: 'abc'
       // screenId: screenId.about,//default to home page
       // width: window.innerWidth//get width of page (for mobile)
     };
   }
 
   callAPI() {
-    fetch("http://localhost:9000/movies")
-        .then(res => res.text())
-        .then(res => this.setState({ movies: res }));
-        // .catch(err => err);
+    fetch("http://www.recipepuppy.com/api")
+        .then((res) => {
+            if (res.status===404){
+                this.setState( {movies : 'Test'});
+            }else{
+                this.setState( {movies : 'Test'});
+            }
+        })
+        .then(res => {this.setState( {movies : 'Test'});});
     }
+
 
   componentWillMount() {
     this.callAPI();
@@ -45,9 +50,10 @@ export default class App extends React.Component {
 
   //render the navbar and the current page being looked at
   render() {
+      var movie = this.state.movies;
     return (
       <div class="main-container">
-        <p className="App-intro">;{this.state.movies[0]}</p>
+        <p className="App-intro">;{movie}</p>
       </div>
   );
   }
