@@ -10,16 +10,16 @@ export default class App extends React.Component {
     super(props);
     //initialize state
     this.state = {
-        apiResponse: ''
+        movies: ''
       // screenId: screenId.about,//default to home page
       // width: window.innerWidth//get width of page (for mobile)
     };
   }
 
   callAPI() {
-    fetch("http://localhost:9000/testAPI")
+    fetch("http://localhost:9000/movies")
         .then(res => res.text())
-        .then(res => this.setState({ apiResponse: res }));
+        .then(res => this.setState({ movies: res }));
         // .catch(err => err);
     }
 
@@ -47,7 +47,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div class="main-container">
-        <p className="App-intro">;{this.state.apiResponse}</p>
+        <p className="App-intro">;{this.state.movies[0]}</p>
       </div>
   );
   }
