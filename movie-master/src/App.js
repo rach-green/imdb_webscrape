@@ -17,7 +17,7 @@ export default class App extends React.Component {
   //needs to be async function because of awaits
   async callAPI() {
     //if using post or other request, may need to pass method parameter
-    let response = await fetch("/allmovies/phrase/people/Leo")//await keyword makes it wait for fetch
+    let response = await fetch("/allmovies/range/year/2000/2010")//await keyword makes it wait for fetch
     let movies = await response.json();
     this.setState({ movies: JSON.stringify(movies)})
     // console.log("exit callapi");

@@ -12,4 +12,7 @@ module.exports = function(app) {
   app.route('/allmovies/phrase/:field/:phrase')
     .get(movieList.list_by_phrase)
 
+  app.route('/allmovies/range/:field/:value1/:value2')
+    .get(movieList.list_by_range)
+
 };

@@ -55,7 +55,20 @@ Movie.getMoviebyPhrase = function (field, phrase, result) {
             });
 };
 
-
+Movie.getMoviebyRange = function (field, value1, value2, result) {
+        let command = "SELECT * FROM movies WHERE " + field + " BETWEEN " + value1 + " AND " + value2;
+        console.log("sql code",command);
+        sql.query(command, function (err, res) {
+                if(err) {
+                    console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  console.log('tasks : ', res);
+                 result(null, res);
+                }
+            });
+};
 
 
 
