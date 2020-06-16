@@ -14,22 +14,16 @@ export default class App extends React.Component {
       // width: window.innerWidth//get width of page (for mobile)
     };
   }
-
+  //needs to be async function because of awaits
   async callAPI() {
-    console.log("enter callapi");
-    let response = await fetch("/movies");
+    // console.log("enter callapi");
+    let response = await fetch(
+        "/allmovies/phrase/people/Leo",
+        { method : "GET"}); //await keyword makes it wait for fetch
+    // console.log("response",response);
     let movies = await response.json();
     this.setState({ movies: JSON.stringify(movies)})
-    // console.log("response:", response);
-    // console.log("response.json:", await response.json());
-    // fetch("/movies")
-    //     .then((res) => console.log("result:",res.text());)
-    //     .then((res) => res.json());
-
-        // .then(res => JSON)
-        // .then(res => {console.log("json:", res)})
-
-    console.log("exit callapi");
+    // console.log("exit callapi");
 }
 
 

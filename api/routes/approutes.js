@@ -3,6 +3,13 @@ module.exports = function(app) {
   var movieList = require('../app/controller/appcontroller');
 
   // movieList Routes
-  app.route('/movies')
+  app.route('/allmovies')
     .get(movieList.list_all_movies)
+
+  app.route('/allmovies/field/:field/:value')
+    .get(movieList.list_by_field)
+
+  app.route('/allmovies/phrase/:field/:phrase')
+    .get(movieList.list_by_phrase)
+
 };
