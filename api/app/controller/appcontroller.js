@@ -46,3 +46,14 @@ exports.list_by_range = function(req, res) {
     res.send(movie);
   });
 };
+
+exports.list_by_all = function(req, res) {
+    console.log("params", req.params);
+  Movie.getMoviewithAll(req.params.rfield, req.params.value1, req.params.value2, req.params.sfield, req.params.phrase, req.params.vfield, req.params.value, req.params.pfield, req.params.person, function(err, movie) {
+    console.log('controller')
+    if (err)
+      res.send(err);
+      console.log('res', movie);
+    res.send(movie);
+  });
+};

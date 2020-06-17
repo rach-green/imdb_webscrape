@@ -15,4 +15,7 @@ module.exports = function(app) {
   app.route('/allmovies/range/:field/:value1/:value2')
     .get(movieList.list_by_range)
 
+  app.route('/all/:rfield/:value1/:value2/:sfield/:phrase/:vfield/:value/:pfield/:person')
+    .get(movieList.list_by_all)
+
 };
