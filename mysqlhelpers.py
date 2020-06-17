@@ -44,7 +44,10 @@ class Connect():
     #single insert of data into the table
     def updateEntry(self, table_name, column_name, id, value):
         self.useDB()
-        self.cursor.execute("UPDATE " + table_name + " SET " + column_name + " = '" + value + "' WHERE id = " + str(id))
+        if value == 'NULL':
+            self.cursor.execute("UPDATE " + table_name + " SET " + column_name + " = NULL WHERE id = " + str(id))
+        else:
+            self.cursor.execute("UPDATE " + table_name + " SET " + column_name + " = '" + value + "' WHERE id = " + str(id))
         self.connection.commit()
 
     #adding an entry to the table
@@ -62,11 +65,21 @@ class Connect():
         records = self.cursor.fetchall()
         for row in records:
             print(str(row[0])+".", end = " ")
-            print(row[1], end = " ")
-            print(row[2], end = " ")
-            print(row[3], end = " ")
-            print(row[4])
-            print(row[5])
+            print(row[1], end = " ") #title
+            print(row[2], end = " ") #year
+            print(row[3], end = " ") #rating
+            print(row[4], end = " ") #critic
+            print("Gross: " + str(row[5]), end = " ") #gross
+            print("Budget: " + str(row[12]), end = " ") #budget
+            print("Runtime: " + str(row[6]), end = " ") #runtime
+            print(row[13]) #language
+            print(row[7])  #genres
+            print("Director: " + row[9]) #director
+            print("Writers: " + row[10]) #writers
+            print("Cast: " + row[11]) #cast
+            print("Summary: " + row[8]) #summary
+            print("Storyline: " + row[14]) #storyline
+
 
     def closeDB(self):
         self.useDB()
