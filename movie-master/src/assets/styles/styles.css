@@ -3,21 +3,24 @@
     background-color: #F1F0E2;
 }
 .header-container{
-    justify-content: right;
+    justify-content: space-between;
     display: flex;
     flex-direction: row;
-    align-items: right;
-
+    /* align-items: right; */
 }
 .nav-buttons-container{
     display: flex;
+    float: right;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: right;
+    align-items: right;
 }
-
+.nav-button:hover{
+    cursor:pointer;
+}
 .nav-button{
     margin-right: 2vw;
-    font-family: "Lato";
+    font-family: "Lato", sans-serif;
     font-style: normal;
     font-weight: 100;
     font-size: 20px;
