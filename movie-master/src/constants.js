@@ -1,3 +1,7 @@
+//use this to label different screens/pages
 export const screenId = {
-  about: "About"
+  home: "Home",
+  analytics: "Analytics",
+  reccomendations: "Reccomendations",
+  product: "Product"
 };

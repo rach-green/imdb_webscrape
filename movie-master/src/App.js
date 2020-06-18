@@ -1,16 +1,19 @@
 import React from 'react';
-import './App.css';
+import './assets/styles/styles.css';
 
 //CONSTANTS
 import { screenId } from "./constants.js";
+import Header from "./components/Header.js"; //have to list folder because not on same level
+import Footer from "./components/Footer.js";
+import Home from "./screens/Home.js"
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    //initialize state
+    //initialize state to home screen
     this.state = {
-        movies: 'abc'
-      // screenId: screenId.about,//default to home page
+        movies: 'abc',
+        screenId: screenId.home//default to home page
       // width: window.innerWidth//get width of page (for mobile)
     };
   }
@@ -25,7 +28,7 @@ export default class App extends React.Component {
 
 
   async componentWillMount() {
-    await this.callAPI();
+    //await this.callAPI();
     }
   /*
   Given a screen id, swap to that page
@@ -35,23 +38,34 @@ export default class App extends React.Component {
   };
 
   //based on this.state.screenId, figure out which page to render!
-  getCurrentPage = (mobile) => {
+  getCurrentPage = () => {
     switch (this.state.screenId) {
-      case screenId.about:
-        return <div></div>;
+      //case ~ if
+      case screenId.home:
+        return <Home />; //calls home class and returns all HTML it returns
       default:
         return <div> 404 page not found {this.state.screenId}</div>; //shouldn't ever reach this
     }
   };
 
   //render the navbar and the current page being looked at
+  //above return can write in js and grab/calculate any data you want
+  //in return you write HTML mayeb with some js variables
   render() {
-      let movie = this.state.movies;
-      console.log("render state",this.state);
-    return (
-      <div className="main-container">
-        <p className="App-intro">;{movie}</p>
-      </div>
-  );
+      return(
+          <div className = "main-container">
+            <Header switchPage = {this.switchPage}/>
+            //curly brackets around anything not HTML
+            {this.getCurrentPage()}
+            <Footer />
+          </div>
+      );
+  //     let movie = this.state.movies;
+  //     console.log("render state",this.state);
+  //   return (
+  //     <div className="main-container">
+  //       <p className="App-intro">;{movie}</p>
+  //     </div>
+  // );
   }
 }
