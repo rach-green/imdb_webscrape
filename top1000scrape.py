@@ -141,7 +141,7 @@ def addBudget(ranking, soup):
                     try:
                         int(budget)
                     except:
-                        budget = 'NULL'
+                        budget = 'NULL' #maybe convert currency later
                     connection.updateEntry(table_name, "budget", ranking, budget)
                     return
 
@@ -250,4 +250,4 @@ while(getNextLink() != -1):
     addToDB()
 
 
-connection.printDB()
+# connection.printDB()
