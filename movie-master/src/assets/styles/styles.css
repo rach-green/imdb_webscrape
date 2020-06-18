@@ -1,0 +1,27 @@
+.main-container{
+    min-width: 100vw;
+    background-color: #F1F0E2;
+}
+.header-container{
+    justify-content: right;
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+
+}
+.nav-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav-button{
+    margin-right: 2vw;
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 56px;
+    color: #0F4C81;
+
+}
