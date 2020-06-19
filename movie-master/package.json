@@ -15,6 +15,7 @@
     "react-native-multi-slider": "^0.3.6",
     "react-ranger": "^2.0.2",
     "react-scripts": "^3.4.1",
+    "react-search-box": "^2.0.2",
     "reactrangeslider": "^3.0.6"
   },
   "scripts": {
