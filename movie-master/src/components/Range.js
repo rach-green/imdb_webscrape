@@ -29,7 +29,7 @@ function Range() {
               <div
                 {...getHandleProps({
                   style: {
-                    width: "30px",
+                    width: "25px",
                     height: "25px",
                     borderRadius: "100%",
                     background: "#F1F0E2",
