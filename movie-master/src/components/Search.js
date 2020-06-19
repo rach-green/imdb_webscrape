@@ -33,7 +33,7 @@ export default class Search extends Component {
   };
 
   removeField = index => {
-    this.setState({fields: this.fields.splice(index)});
+    this.setState({fields: this.fields.splice(index, index)});
     console.log("fields", this.fields);
   };
 
