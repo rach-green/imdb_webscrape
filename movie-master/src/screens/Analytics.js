@@ -8,7 +8,10 @@ export default class Analytics extends React.Component{//react has a component c
     render(){
         return(
             <div className = "analytics-container">
-            <Range />
+                <div className = "range-div">
+                    <div className = "analytics-title">years</div>
+                    <Range />
+                </div>
             </div>
         );
     }

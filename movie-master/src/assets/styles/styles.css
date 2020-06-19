@@ -89,3 +89,9 @@
     font-weight: bold;
     text-align: center;
 }
+.range-div{
+    width : 50vw;
+}
+.values-text{
+    font-size: 10px
+}

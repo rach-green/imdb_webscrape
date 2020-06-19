@@ -3,26 +3,23 @@ import ReactDOM from "react-dom";
 import { useRanger } from "react-ranger";
 
 function Range() {
-  const [values, setValues] = React.useState([20, 50, 80]);
+  const [values, setValues] = React.useState([1900, 2020]);
 
   const { getTrackProps, handles } = useRanger({
-    min: 0,
-    max: 100,
-    stepSize: 5,
+    min: 1900,
+    max: 2020,
+    stepSize: 1,
     values,
     onChange: setValues
   });
 
       return (
-        <div className="App">
-          <h1>Multi-Range</h1>
-          <br />
-          <br />
+        <div className="Range">
           <div
             {...getTrackProps({
               style: {
-                height: "4px",
-                background: "#ddd",
+                height: "8px",
+                background: "#6A1A4C",
                 boxShadow: "inset 0 1px 2px rgba(0,0,0,.6)",
                 borderRadius: "2px"
               }
@@ -32,31 +29,17 @@ function Range() {
               <div
                 {...getHandleProps({
                   style: {
-                    width: "12px",
-                    height: "12px",
+                    width: "30px",
+                    height: "25px",
                     borderRadius: "100%",
-                    background: "linear-gradient(to bottom, #eee 45%, #ddd 55%)",
+                    background: "#F1F0E2",
                     border: "solid 1px #888"
                   }
                 })}
               />
             ))}
           </div>
-          <br />
-          <br />
-          <br />
-          <pre
-            style={{
-              display: "inline-block",
-              textAlign: "left"
-            }}
-          >
-            <code>
-              {JSON.stringify({
-                values
-              })}
-            </code>
-          </pre>
+          <div className = "values-text">Min:{values[0]}Max:{values[1]}</div>
         </div>
       );
     }
