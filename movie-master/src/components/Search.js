@@ -28,12 +28,14 @@ export default class Search extends Component {
   fields = []
 
   addField = name => {
-    this.setState({fields: this.fields.push(name)});
+    if (!this.fields.includes(name)){
+        this.setState({fields: this.fields.push(name)});
+    };
     console.log("fields", this.fields);
   };
 
   removeField = index => {
-    this.setState({fields: this.fields.splice(index, index)});
+    this.setState({fields: this.fields.splice(index, 1)});
     console.log("fields", this.fields);
   };
 
