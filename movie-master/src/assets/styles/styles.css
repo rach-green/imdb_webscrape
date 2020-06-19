@@ -21,10 +21,50 @@
 .nav-button{
     margin-right: 2vw;
     font-family: "Lato", sans-serif;
-    font-style: normal;
-    font-weight: 100;
+    font-weight: bold;
     font-size: 20px;
     line-height: 56px;
     color: #0F4C81;
 
+}
+.button-container{
+    background-color: #0F4C81;
+    border-radius: 16px;
+    margin-right: 4vw;
+}
+.button-text{
+    padding-top: 4%;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-bottom: 4%;
+    color: #F1F0E2;
+    white-space: nowrap;
+
+}
+.buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-bottom: 15vw;;
+}
+.home-heading{
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    color: #6A1A4C;
+    line-height: 60px;
+    margin-bottom: 2vw;
+}
+
+.home-container{
+    width: 600px;
+    margin-left: 6vw;
+    margin-top: 15vw;
+
+}
+.home-paragraph{
+    font-family: "Lato", sans-serif;
+    color: #2A2A35;
+    font-size: 20px;
+    margin-bottom: 4vw;
 }

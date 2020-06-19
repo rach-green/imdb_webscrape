@@ -5,7 +5,12 @@ import './assets/styles/styles.css';
 import { screenId } from "./constants.js";
 import Header from "./components/Header.js"; //have to list folder because not on same level
 import Footer from "./components/Footer.js";
-import Home from "./screens/Home.js"
+
+//SCREENS
+import Home from "./screens/Home.js";
+import Analytics from "./screens/Analytics.js";
+import Product from "./screens/Product.js";
+import Reccomendations from "./screens/Reccomendations.js";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,7 +47,13 @@ export default class App extends React.Component {
     switch (this.state.screenId) {
       //case ~ if
       case screenId.home:
-        return <Home />; //calls home class and returns all HTML it returns
+        return <Home switchPage={this.switchPage}/>; //calls home class and returns all HTML it returns
+      case screenId.analytics:
+        return <Analytics />; //calls Analytics class and returns all HTML it returns
+      case screenId.reccomendations:
+        return <Reccomendations />; //calls Reccomendations class and returns all HTML it returns
+      case screenId.product:
+        return <Product />; //calls Product class and returns all HTML it returns
       default:
         return <div> 404 page not found {this.state.screenId}</div>; //shouldn't ever reach this
     }
@@ -55,7 +66,6 @@ export default class App extends React.Component {
       return(
           <div className = "main-container">
             <Header switchPage = {this.switchPage}/>
-            //curly brackets around anything not HTML
             {this.getCurrentPage()}
             <Footer />
           </div>
