@@ -11,7 +11,7 @@ export default class Analytics extends React.Component{//react has a component c
             <div className = "analytics-container">
                 <div className = "range-div">
                     <div className = "analytics-title">years</div>
-                    // <Range />
+                    <Range />
                 </div>
                 <Search />
             </div>

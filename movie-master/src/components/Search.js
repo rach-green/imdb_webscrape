@@ -24,7 +24,8 @@ export default class Search extends Component {
       value: 'Karius',
     },
   ]
-  fields = []
+
+  fields = [{name : 'Sophie Keller'}, {name: 'Rachel Green'}]
 
   addField = name => {
     this.fields.push({name: name});
@@ -38,7 +39,6 @@ export default class Search extends Component {
       <div className = "search-container">
         <ReactSearchBox
         placeholder="Search a Person"
-        value="Doe"
         data={this.data}
         onSelect={record => this.addField(record)}
         />
