@@ -27,9 +27,11 @@ export default class Search extends Component {
   fields = []
 
   addField = name => {
-    this.fields.push(name);
+    this.fields.push({name: name});
     console.log(this.fields);
   };
+
+
 
   render() {
     return (
@@ -40,8 +42,12 @@ export default class Search extends Component {
         data={this.data}
         onSelect={record => this.addField(record)}
         />
-        <div>{this.fields.toString()}</div>
-
+        <div className = "search-list">
+        People
+        {this.fields.map((name, index) => (
+            <p key={index}> {name.name} </p>
+        ))}
+        </div>
       </div>
   );
   }
