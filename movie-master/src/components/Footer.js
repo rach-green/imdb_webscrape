@@ -4,6 +4,10 @@ import { screenId } from "../constants.js";
 
 export default class Footer extends React.Component{
     render(){
-        return(<div>footer</div>);
+        return(
+            <div className = "footer-container">
+                <div className = "footer-text"> Created by Sophie Keller and Rachel Green</div>
+            </div>
+        );
     }
 }
