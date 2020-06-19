@@ -25,14 +25,17 @@ export default class Search extends Component {
     },
   ]
 
-  fields = [{name : 'Sophie Keller'}, {name: 'Rachel Green'}]
+  fields = []
 
   addField = name => {
-    this.fields.push({name: name});
-    console.log(this.fields);
+    this.setState({fields: this.fields.push(name)});
+    console.log("fields", this.fields);
   };
 
-
+  removeField = index => {
+    this.setState({fields: this.fields.splice(index)});
+    console.log("fields", this.fields);
+  };
 
   render() {
     return (
@@ -45,7 +48,10 @@ export default class Search extends Component {
         <div className = "search-list">
         People
         {this.fields.map((name, index) => (
-            <p key={index}> {name.name} </p>
+            <div key={index} className = "name-button">
+                <div onClick = {record => this.removeField(index)}>x</div>
+                {name.value}
+            </div>
         ))}
         </div>
       </div>

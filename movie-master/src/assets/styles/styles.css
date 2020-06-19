@@ -95,3 +95,10 @@
 .values-text{
     font-size: 10px
 }
+.name-button{
+    display: flex;
+    flex-direction: row;
+}
+.name-button:hover{
+    cursor:pointer;
+}
