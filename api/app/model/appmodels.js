@@ -23,6 +23,20 @@ Movie.getAllMovie = function (result) {
                 }
             });
 };
+Movie.getAllDirectors = function (result) {
+        console.log("all table function");
+        sql.query("Select directors from movies", function (err, res) {
+                if(err) {
+                    console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  console.log('tasks : ', res);
+
+                 result(null, res);
+                }
+            });
+};
 
 Movie.getMoviebyField = function (field, value, result) {
         console.log("field function");

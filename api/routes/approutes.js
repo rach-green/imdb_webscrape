@@ -6,6 +6,9 @@ module.exports = function(app) {
   app.route('/allmovies')
     .get(movieList.list_all_movies)
 
+  app.route('/allmovies/directors')
+    .get(movieList.list_all_directors)
+
   app.route('/allmovies/field/:field/:value')
     .get(movieList.list_by_field)
 

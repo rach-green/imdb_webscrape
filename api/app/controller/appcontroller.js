@@ -14,6 +14,18 @@ exports.list_all_movies = function(req, res) {
   });
 };
 
+exports.list_all_directors = function(req, res) {
+  Movie.getAllDirectors(function(err, movie) {
+
+    console.log('controller')
+    if (err)
+      res.send(err);
+      console.log('res', movie);
+    // res.set('Content-Type', 'application/json');
+    res.send(movie);
+  });
+};
+
 exports.list_by_field = function(req, res) {
     console.log("params", req.params);
   Movie.getMoviebyField(req.params.field, req.params.value, function(err, movie) {
