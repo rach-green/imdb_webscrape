@@ -52,14 +52,15 @@ export default class Search extends Component {
     return (
       <div className = "search-container">
         <ReactSearchBox
-        placeholder="search"
+        placeholder= "search"
         data={this.directors}
         onSelect={record => this.addField(record)}
+        dropDownHoverColor = "rgba(15, 76, 129, 0.2)"
         />
         <div className = "search-list">
         {this.fields.map((name, index) => (
             <div key={index} className = "name-button">
-                <div onClick = {record => this.removeField(index)}>x</div>
+                <div className = "name-x-button" onClick = {record => this.removeField(index)}>x</div>
                 {name.value}
             </div>
         ))}

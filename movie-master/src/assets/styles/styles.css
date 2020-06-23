@@ -97,10 +97,20 @@
     font-size: 15px
 }
 .name-button{
+    margin-top: 5px;
     display: flex;
     flex-direction: row;
+    color: #2A2A35;
 }
-.name-button:hover{
+
+.name-x-button{
+    margin-right: 5px;
+    cursor:pointer;
+    font-weight: bolder;
+    color: #2A2A35;
+}
+
+.name-x-button:hover{
     cursor:pointer;
 }
 
@@ -182,13 +192,14 @@
 }
 
 .jwfbbd {
-    font-size: 14px;
+    font-size: 10px;
     padding: 10px 20px;
     height: 30px;
     border: 0px solid #cacaca96;
     border-radius: 50px;
     color: #2A2A35;
     background-color: rgba(15, 76, 129, 0.2);
+    font-family: "Lato", sans-serif;
 }
 
 .horizantal-line{
