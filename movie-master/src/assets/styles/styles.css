@@ -1,4 +1,5 @@
 .main-container{
+    font-family: "Lato", sans-serif;
     min-width: 100vw;
     background-color: #F1F0E2;
     min-height: 100vh;
@@ -90,10 +91,10 @@
     text-align: center;
 }
 .range-div{
-    width : 50vw;
+    width : 25vw;
 }
 .values-text{
-    font-size: 10px
+    font-size: 15px
 }
 .name-button{
     display: flex;
@@ -101,4 +102,99 @@
 }
 .name-button:hover{
     cursor:pointer;
+}
+
+.selected-button{
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: underline;
+    padding-right: 1vw
+}
+
+.selected-button:hover{
+    cursor:pointer;
+}
+
+.unselected-button{
+    font-size: 15px;
+    padding-right: 1vw
+}
+
+.unselected-button:hover{
+    cursor:pointer;
+}
+
+.ratingbuttons-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.filters-container{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    width: 85%
+}
+
+.filters-column{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    margin-right: 3vw;
+}
+
+.search-container{
+    width: 20vw;
+}
+
+.analytics-container{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction:column;
+}
+
+.analytics-title{
+    font-weight: bold;
+    font-size: 22px;
+    padding-bottom: 2vh;
+    color: #6A1A4C
+}
+
+.ratings-div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5vh;
+}
+
+.range-container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.values-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh
+}
+
+.jwfbbd {
+    font-size: 14px;
+    padding: 10px 20px;
+    height: 30px;
+    border: 0px solid #cacaca96;
+    border-radius: 50px;
+    color: #2A2A35;
+    background-color: rgba(15, 76, 129, 0.2);
+}
+
+.horizantal-line{
+    margin-top: 5vh;
+    width: 1200px;
+    height: 0px;
+    border: 1px solid #6A1A4C;
+    border-radius: 75px
 }

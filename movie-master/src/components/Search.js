@@ -52,12 +52,11 @@ export default class Search extends Component {
     return (
       <div className = "search-container">
         <ReactSearchBox
-        placeholder="Search a Person"
+        placeholder="search"
         data={this.directors}
         onSelect={record => this.addField(record)}
         />
         <div className = "search-list">
-        People
         {this.fields.map((name, index) => (
             <div key={index} className = "name-button">
                 <div onClick = {record => this.removeField(index)}>x</div>

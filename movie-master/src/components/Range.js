@@ -14,32 +14,35 @@ function Range() {
   });
 
       return (
-        <div className="Range">
-          <div
-            {...getTrackProps({
-              style: {
-                height: "8px",
-                background: "#6A1A4C",
-                boxShadow: "inset 0 1px 2px rgba(0,0,0,.6)",
-                borderRadius: "2px"
-              }
-            })}
-          >
-            {handles.map(({ getHandleProps }) => (
+        <div className = "range-container">
+            <div className="Range">
               <div
-                {...getHandleProps({
+                {...getTrackProps({
                   style: {
-                    width: "25px",
-                    height: "25px",
-                    borderRadius: "100%",
-                    background: "#F1F0E2",
-                    border: "solid 1px #888"
+                    height: "4px",
+                    background: "#2A2A35",
+                    boxShadow: "inset 0 1px 2px rgba(0,0,0,.6)",
+                    borderRadius: "15px"
                   }
                 })}
-              />
-            ))}
-          </div>
-          <div className = "values-text">Min:{values[0]}Max:{values[1]}</div>
+              >
+                {handles.map(({ getHandleProps }) => (
+                  <div
+                    {...getHandleProps({
+                      style: {
+                        width: "12px",
+                        height: "12px",
+                        borderRadius: "100%",
+                        background: "#2A2A35",
+                        border: "solid 0px #888",
+                        cursor: "pointer"
+                      }
+                    })}
+                  />
+                ))}
+              </div>
+              </div>
+            <div className = "values-text">{values[0]} - {values[1]}</div>
         </div>
       );
     }
