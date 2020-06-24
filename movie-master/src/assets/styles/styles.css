@@ -94,7 +94,9 @@
     width : 25vw;
 }
 .values-text{
-    font-size: 15px
+    font-size: 15px;
+    font-weight: lighter;
+
 }
 .name-button{
     margin-top: 5px;
@@ -283,6 +285,8 @@
     width: 45vw;
     padding-left: 8vw;
     padding-right: 1vw;
+    height: 60vh;
+    overflow-y: scroll;
 }
 
 .movie-info-container-unselected{
@@ -291,7 +295,11 @@
     text-align: left;
     justify-content: left;
     width: 20vw;
-
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    margin-bottom: 2vh;
 }
 
 .movie-info-container-selected{
@@ -301,6 +309,12 @@
     justify-content: left;
     width: 20vw;
     background-color: rgba(15, 76, 129, 0.2);
+    border-radius: 10px;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    margin-bottom: 2vh;
 }
 
 .movieinfo-text-body-container{
@@ -319,8 +333,13 @@
     display: flex;
 }
 
+.movieinfo-text-title:hover{
+    cursor:pointer;
+}
+
 .movieinfo-text-summary{
     display: flex;
     text-align: left;
+    font-weight: lighter;
 
 }

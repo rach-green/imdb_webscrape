@@ -56,6 +56,8 @@ export default class Analytics extends React.Component{//react has a component c
                         <div className = "analytics-header">your movies</div>
                         <div className = "analytics-movies">
                             <MovieInfo title = "Shawshank Redemption" rating = "R" year = "1994" genre = "Action" summary = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."/>
+                            <MovieInfo title = "Shawshank Redemption" rating = "R" year = "1994" genre = "Action" summary = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."/>
+                            <MovieInfo title = "Shawshank Redemption" rating = "R" year = "1994" genre = "Action" summary = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."/>
                         </div>
                     </div>
                 </div>
