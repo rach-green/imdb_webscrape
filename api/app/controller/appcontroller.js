@@ -25,6 +25,28 @@ exports.list_all_directors = function(req, res) {
     res.send(movie);
   });
 };
+exports.list_all_cast = function(req, res) {
+  Movie.getAllCast(function(err, movie) {
+
+    //console.log('controller')
+    if (err)
+      res.send(err);
+      //console.log('res', movie);
+    // res.set('Content-Type', 'application/json');
+    res.send(movie);
+  });
+};
+exports.list_all_writers = function(req, res) {
+  Movie.getAllWriters(function(err, movie) {
+
+    //console.log('controller')
+    if (err)
+      res.send(err);
+      //console.log('res', movie);
+    // res.set('Content-Type', 'application/json');
+    res.send(movie);
+  });
+};
 
 exports.list_by_field = function(req, res) {
     //console.log("params", req.params);

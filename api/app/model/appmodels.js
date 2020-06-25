@@ -23,9 +23,38 @@ Movie.getAllMovie = function (result) {
                 }
             });
 };
+
+Movie.getAllWriters = function (result) {
+        console.log("all writers function");
+        sql.query("Select writers from movies", function (err, res) {
+                if(err) {
+                    //console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  //console.log('tasks : ', res);
+
+                 result(null, res);
+                }
+            });
+};
 Movie.getAllDirectors = function (result) {
         console.log("all director function");
         sql.query("Select directors from movies", function (err, res) {
+                if(err) {
+                    //console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  //console.log('tasks : ', res);
+
+                 result(null, res);
+                }
+            });
+};
+Movie.getAllCast = function (result) {
+        console.log("all cast function");
+        sql.query("Select cast from movies", function (err, res) {
                 if(err) {
                     //console.log("error: ", err);
                     result(null, err);
@@ -123,10 +152,26 @@ Movie.getMoviesbyJson = function (json, result) {
     let command = "SELECT * FROM movies WHERE ";
     //data hold json object.
     let data = JSON.parse(json);
-    if (data["people"].length != 0){
+    if (data["directors"].length != 0){
     command += "("
-    for(var i = 0; i < data["people"].length; i++){
-        command+= "directors LIKE '%" + (data["people"])[i] + "%'" + " OR ";
+    for(var i = 0; i < data["directors"].length; i++){
+        command+= "directors LIKE '%" + (data["directors"])[i] + "%'" + " OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["cast"].length != 0){
+    command += "("
+    for(var i = 0; i < data["cast"].length; i++){
+        command+= "cast LIKE '%" + (data["cast"])[i] + "%'" + " OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["writers"].length != 0){
+    command += "("
+    for(var i = 0; i < data["writers"].length; i++){
+        command+= "writers LIKE '%" + (data["writers"])[i] + "%'" + " OR ";
     }
     command = command.slice(0,-4);
     command += ") AND "

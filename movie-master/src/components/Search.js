@@ -3,15 +3,18 @@ import ReactSearchBox from 'react-search-box'
 
 export default class Search extends Component {
 
-  directors = [];
+  people = [];
 
   async callAPI() {
+      let title = this.props.title
+
       //note -> we may want to have table of all directors or have this computation somewhere else - this is temporary
-      let response = await fetch("/allmovies/directors")//fetches array of all directors
-      let directors = await response.json();//directors in form: [{"directors":"Martin Scorsese, Greta Gerwig"}]
+      let response = await fetch("/allmovies/"+title)//fetches array of all directors
+      let res = await response.json();//directors in form: [{"directors":"Martin Scorsese, Greta Gerwig"}]
       let build = [];//will store array of directors with no duplicates
-      for(var i = 0; i < directors.length; i++) { //iterates through each movie's directors string
-          var array = ((directors[i])["directors"]).split(", ")//grabs string of directors and converts to array where each name is one element
+      for(var i = 0; i < res.length; i++) { //iterates through each movie's directors string
+          if ((res[i])[title]!= null){
+          var array = ((res[i])[title]).split(", ")//grabs string of directors and converts to array where each name is one element
           for(var j = 0; j < array.length; j++){//iterates through array of directors
               let director = array[j]
               if (!(build.includes(director))){//adds director to array if not already in
@@ -19,13 +22,14 @@ export default class Search extends Component {
               }
           }
       }
+      }
       let data = [];//have to convert array of directors into array of dictionaries for SearchBox [{key: 'name', value: 'name'},{key: 'name', value: 'name'}]
       for(var i = 0; i < build.length; i++){
           let director = build[i];
           let dict = {key: director, value: director};
           data.push(dict);
       }
-      this.directors = data;
+      this.people = data;
   }
   //componentDidMount gets called after render
   async componentDidMount() {
@@ -64,7 +68,7 @@ export default class Search extends Component {
       <div className = "search-container">
         <ReactSearchBox
         placeholder= "search"
-        data={this.directors}
+        data={this.people}
         onSelect={record => this.addField(record)}
         dropDownHoverColor = "rgba(15, 76, 129, 0.2)"
         />

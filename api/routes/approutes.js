@@ -8,6 +8,12 @@ module.exports = function(app) {
 
   app.route('/allmovies/directors')
     .get(movieList.list_all_directors)
+    
+  app.route('/allmovies/writers')
+    .get(movieList.list_all_writers)
+
+  app.route('/allmovies/cast')
+     .get(movieList.list_all_cast)
 
   app.route('/allmovies/field/:field/:value')
     .get(movieList.list_by_field)
