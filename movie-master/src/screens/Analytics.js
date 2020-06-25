@@ -35,7 +35,10 @@ export default class Analytics extends React.Component{//react has a component c
         this.state.selection.ratings.push(rating);}
         console.log("selection", this.state.selection)
     }
-
+    updatePeople = people => {
+        this.state.selection.people = people;
+        console.log("selection", this.state.selection)
+    }
     render(){
         return(
             <div className = "analytics-container">
@@ -60,11 +63,11 @@ export default class Analytics extends React.Component{//react has a component c
                     </div>
                     <div className = "filters-column">
                         <div className = "analytics-title">people</div>
-                        <Search />
+                        <Search update = {this.updatePeople}/>
                     </div>
                     <div className = "filters-column">
                         <div className = "analytics-title">keywords</div>
-                        <Search />
+                        <Search update = {this.updatePeople}/>
                     </div>
                 </div>
                 <div className = "horizantal-line"></div>
