@@ -41,6 +41,8 @@ export default class Search extends Component {
     if (!this.fields.includes(name)){//only adds if not already selected
         this.setState({fields: this.fields.push(name)});
     };
+    // var list = document.getElementsByTagName("input")[0];
+    // list.value = 0;
   };
 
   //gets called by the x button when clicked, removes name from fields array

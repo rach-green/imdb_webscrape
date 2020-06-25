@@ -12,6 +12,7 @@ export default class RatingButton extends React.Component{
 
     selected = () => {
           this.setState({selected: !this.state.selected});
+          this.props.update(this.props.label)
     };
 
 

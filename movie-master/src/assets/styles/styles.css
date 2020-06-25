@@ -294,7 +294,7 @@
     flex-direction: column;
     text-align: left;
     justify-content: left;
-    width: 20vw;
+    width: 35vw;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
     padding-top: 0.5vh;
@@ -307,7 +307,7 @@
     flex-direction: column;
     text-align: left;
     justify-content: left;
-    width: 20vw;
+    width: 35vw;
     background-color: rgba(15, 76, 129, 0.2);
     border-radius: 10px;
     padding-left: 0.5vw;
