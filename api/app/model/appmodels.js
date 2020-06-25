@@ -123,20 +123,28 @@ Movie.getMoviesbyJson = function (json, result) {
     let command = "SELECT * FROM movies WHERE ";
     //data hold json object.
     let data = JSON.parse(json);
+    if (data["people"].length != 0){
     command += "("
     for(var i = 0; i < data["people"].length; i++){
         command+= "directors LIKE '%" + (data["people"])[i] + "%'" + " OR ";
     }
     command = command.slice(0,-4);
-    command += ") AND ("
+    command += ") AND "
+    }
+    if (data["ratings"].length != 0){
+    command += "("
     for(var i = 0; i < data["ratings"].length; i++){
         command+= "rating = '" + (data["ratings"])[i] + "' OR ";
     }
     command = command.slice(0,-4);
-    command += ") AND ("
-    command+= "year BETWEEN " + (data["years"])[0] + " AND " + (data["years"])[1] + ") OR ";
-
-    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["years"].length != 0){
+    command += "("
+    command+= "year BETWEEN " + (data["years"])[0] + " AND " + (data["years"])[1];
+    command += ") AND "
+    }
+    command = command.slice(0,-5);
     console.log("sql code: ",command);
     sql.query(command, function (err, res) {
             if(err) {

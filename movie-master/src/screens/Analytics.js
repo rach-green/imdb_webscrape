@@ -19,10 +19,10 @@ export default class Analytics extends React.Component{//react has a component c
               {"id":3,"title":"The Dark Knight","year":2008,"rating":"PG-13","critic_score":9,"gross":534858444,"runtime":152,"genres":"Action, Crime, Drama","summary":"When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.","directors":"Christopher Nolan","writers":"Jonathan Nolan, Christopher Nolan","cast":"Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine, Maggie Gyllenhaal, Gary Oldman, Morgan Freeman, Monique Gabriela Curnen, Ron Dean, Cillian Murphy, Chin Han, Nestor Carbonell, Eric Roberts, Ritchie Coster, Anthony Michael Hall","budget":185000000,"languages":"English, Mandarin","storyline":"Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James Gordon, and new District Attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind known only as \"The Joker\" appears in Gotham, creating a new wave of chaos. Batman`s struggle against The Joker becomes deeply personal, forcing him to \"confront everything he believes\" and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent, and Rachel Dawes."}
           ],
           selection: {
-                    ratings: [" "],
-                    people: [" "],
-                    keywords: [" "],
-                    years: [1900,2020]
+                    ratings: [],
+                    people: [],
+                    keywords: [],
+                    years: []
                     }
       };
     }
@@ -40,7 +40,7 @@ export default class Analytics extends React.Component{//react has a component c
 
 
     async componentDidMount() {
-      await this.callAPI();
+      // await this.callAPI();
     }
     /*if this rating is already in ratings, remove otherwise add.
     filter: returns array without 'rating' b/c we don't have an index*/
@@ -119,9 +119,7 @@ export default class Analytics extends React.Component{//react has a component c
                         <div className = "analytics-header">your movies</div>
                         <div className = "analytics-movies">
                             {this.state.movies.map((movie, index) => (
-                                <div key={index} className = "name-button">
                                     <MovieInfo title = {movie['title']} rating = {movie['rating']} year = {movie['year']} genre = {movie['genres']} summary = {movie['summary']}/>
-                                </div>
                             ))}
                         </div>
                     </div>

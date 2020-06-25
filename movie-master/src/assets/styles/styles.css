@@ -300,6 +300,7 @@
     padding-top: 0.5vh;
     padding-bottom: 0.5vh;
     margin-bottom: 2vh;
+    min-height: 10vh;
 }
 
 .movie-info-container-selected{
@@ -315,6 +316,7 @@
     padding-top: 0.5vh;
     padding-bottom: 0.5vh;
     margin-bottom: 2vh;
+    min-height: 20vh;
 }
 
 .movieinfo-text-body-container{
@@ -342,4 +344,7 @@
     text-align: left;
     font-weight: lighter;
 
+}
+.name-button{
+    min-height: 10vh;
 }
