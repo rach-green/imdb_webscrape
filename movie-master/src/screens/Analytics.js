@@ -19,9 +19,9 @@ export default class Analytics extends React.Component{//react has a component c
               {"id":3,"title":"The Dark Knight","year":2008,"rating":"PG-13","critic_score":9,"gross":534858444,"runtime":152,"genres":"Action, Crime, Drama","summary":"When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.","directors":"Christopher Nolan","writers":"Jonathan Nolan, Christopher Nolan","cast":"Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine, Maggie Gyllenhaal, Gary Oldman, Morgan Freeman, Monique Gabriela Curnen, Ron Dean, Cillian Murphy, Chin Han, Nestor Carbonell, Eric Roberts, Ritchie Coster, Anthony Michael Hall","budget":185000000,"languages":"English, Mandarin","storyline":"Set within a year after the events of Batman Begins (2005), Batman, Lieutenant James Gordon, and new District Attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City, until a mysterious and sadistic criminal mastermind known only as \"The Joker\" appears in Gotham, creating a new wave of chaos. Batman`s struggle against The Joker becomes deeply personal, forcing him to \"confront everything he believes\" and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent, and Rachel Dawes."}
           ],
           selection: {
-                    ratings: ["X"],
-                    people: ["Steven Spielberg"],
-                    keywords: [""],
+                    ratings: [" "],
+                    people: [" "],
+                    keywords: [" "],
                     years: [1900,2020]
                     }
       };
@@ -31,7 +31,7 @@ export default class Analytics extends React.Component{//react has a component c
     async callAPI() {
       let selection =  this.state.selection;
       console.log("selection data", JSON.stringify(selection));
-      //let response = await fetch(`/all/year/${selection.years[0]}/${selection.years[1]}/0/0/rating/${selection.ratings[selection.ratings.length-1]}/directors/${selection.people[0]}`)//await keyword makes it wait for fetch
+      // let response = await fetch(`/all/year/${selection.years[0]}/${selection.years[1]}/0/0/rating/${selection.ratings[selection.ratings.length-1]}/directors/${selection.people[0]}`)//await keyword makes it wait for fetch
       let response = await fetch(`/analytics/${JSON.stringify(selection)}`);
       console.log("fetch complete");
       let movies = await response.json();

@@ -118,16 +118,25 @@ Movie.getMoviewithAll = function (rfield, value1, value2, sfield, phrase, vfield
             });
 };
 
-Movie.getMoviesbyJson = function (json) {
+Movie.getMoviesbyJson = function (json, result) {
     console.log("allMoviesbyJson function");
-    let command = "SELECT title FROM movies WHERE ";
+    let command = "SELECT * FROM movies WHERE ";
     //data hold json object.
     let data = JSON.parse(json);
-    for(var i = 0; i < data.people.length; i++){
-        command+= "directors LIKE '%" + (data.people)[i] + "%'" + " AND ";
-        //console.log("director", (data.people)[i]);
+    command += "("
+    for(var i = 0; i < data["people"].length; i++){
+        command+= "directors LIKE '%" + (data["people"])[i] + "%'" + " OR ";
     }
-    command = command.slice(0,-5);
+    command = command.slice(0,-4);
+    command += ") AND ("
+    for(var i = 0; i < data["ratings"].length; i++){
+        command+= "rating = '" + (data["ratings"])[i] + "' OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND ("
+    command+= "year BETWEEN " + (data["years"])[0] + " AND " + (data["years"])[1] + ") OR ";
+
+    command = command.slice(0,-4);
     console.log("sql code: ",command);
     sql.query(command, function (err, res) {
             if(err) {
@@ -135,9 +144,10 @@ Movie.getMoviesbyJson = function (json) {
                 result(null, err);
             }
             else{
-             console.log('tasks : ', res);
-             result(null, res);
+                    //console.log('tasks : ', res);
+                    result(null, res);
             }
+
         });
 };
 

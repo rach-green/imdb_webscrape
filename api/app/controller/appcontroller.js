@@ -71,13 +71,13 @@ exports.list_by_all = function(req, res) {
 };
 
 exports.list_by_json = function(req, res) {
-    console.log("params", req.params);
+    //console.log("params", req.params);
     console.log("list_by_json json string", req.params.json);
   Movie.getMoviesbyJson(req.params.json, function(err, movie) {
     console.log('controller')
     if (err)
       res.send(err);
-      console.log('res', movie);
+      //console.log('res', movie);
     res.send(movie);
   });
 };
