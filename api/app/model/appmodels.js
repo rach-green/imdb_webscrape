@@ -13,25 +13,25 @@ Movie.getAllMovie = function (result) {
         console.log("all table function");
         sql.query("Select * from movies", function (err, res) {
                 if(err) {
-                    console.log("error: ", err);
+                    //console.log("error: ", err);
                     result(null, err);
                 }
                 else{
-                  console.log('tasks : ', res);
+                  //console.log('tasks : ', res);
 
                  result(null, res);
                 }
             });
 };
 Movie.getAllDirectors = function (result) {
-        console.log("all table function");
+        console.log("all director function");
         sql.query("Select directors from movies", function (err, res) {
                 if(err) {
-                    console.log("error: ", err);
+                    //console.log("error: ", err);
                     result(null, err);
                 }
                 else{
-                  console.log('tasks : ', res);
+                  //console.log('tasks : ', res);
 
                  result(null, res);
                 }
@@ -40,17 +40,17 @@ Movie.getAllDirectors = function (result) {
 
 Movie.getMoviebyField = function (field, value, result) {
         console.log("field function");
-        console.log("field", field);
-        console.log("id", value);
+        //console.log("field", field);
+        //console.log("id", value);
         let command = "Select * from movies where " + field + " = ?";
-        console.log("sql code",command);
+        //console.log("sql code",command);
         sql.query(command, [value], function (err, res) {
                 if(err) {
-                    console.log("error: ", err);
+                    //console.log("error: ", err);
                     result(null, err);
                 }
                 else{
-                  console.log('tasks : ', res);
+                  //console.log('tasks : ', res);
                  result(null, res);
                 }
             });
@@ -59,14 +59,14 @@ Movie.getMoviebyField = function (field, value, result) {
 Movie.getMoviebyPhrase = function (field, phrase, result) {
         console.log("phrase function");
         let command = "SELECT * FROM movies WHERE " + field + " LIKE '%" + phrase + "%'";
-        console.log("sql code",command);
+        //console.log("sql code",command);
         sql.query(command, function (err, res) {
                 if(err) {
-                    console.log("error: ", err);
+                    //console.log("error: ", err);
                     result(null, err);
                 }
                 else{
-                  console.log('tasks : ', res);
+                  //console.log('tasks : ', res);
                  result(null, res);
                 }
             });
@@ -75,14 +75,14 @@ Movie.getMoviebyPhrase = function (field, phrase, result) {
 Movie.getMoviebyRange = function (field, value1, value2, result) {
         console.log("range function");
         let command = "SELECT * FROM movies WHERE " + field + " BETWEEN " + value1 + " AND " + value2;
-        console.log("sql code",command);
+        //console.log("sql code",command);
         sql.query(command, function (err, res) {
                 if(err) {
-                    console.log("error: ", err);
+                    //console.log("error: ", err);
                     result(null, err);
                 }
                 else{
-                  console.log('tasks : ', res);
+                  //console.log('tasks : ', res);
                  result(null, res);
                 }
             });
@@ -103,19 +103,42 @@ Movie.getMoviewithAll = function (rfield, value1, value2, sfield, phrase, vfield
         if (vfield != 0){
             command += vfield + " = '" + value + "' AND ";
         }
-        // console.log("command before slice", command);
+        // //console.log("command before slice", command);
         command = command.slice(0,-5);
-        console.log("sql code",command);
+        //console.log("sql code",command);
         sql.query(command, function (err, res) {
                 if(err) {
-                    console.log("error: ", err);
+                    //console.log("error: ", err);
                     result(null, err);
                 }
                 else{
-                  console.log('tasks : ', res);
+                  //console.log('tasks : ', res);
                  result(null, res);
                 }
             });
+};
+
+Movie.getMoviesbyJson = function (json) {
+    console.log("allMoviesbyJson function");
+    let command = "SELECT title FROM movies WHERE ";
+    //data hold json object.
+    let data = JSON.parse(json);
+    for(var i = 0; i < data.people.length; i++){
+        command+= "directors LIKE '%" + (data.people)[i] + "%'" + " AND ";
+        //console.log("director", (data.people)[i]);
+    }
+    command = command.slice(0,-5);
+    console.log("sql code: ",command);
+    sql.query(command, function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(null, err);
+            }
+            else{
+             console.log('tasks : ', res);
+             result(null, res);
+            }
+        });
 };
 
 

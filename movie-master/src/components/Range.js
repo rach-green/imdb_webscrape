@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useRanger } from "react-ranger";
 
-function Range() {
+function Range(props) {
   const [values, setValues] = React.useState([1900, 2020]);
 
   const { getTrackProps, handles } = useRanger({
@@ -13,6 +13,7 @@ function Range() {
     onChange: setValues
   });
 
+      props.update(values);
       return (
         <div className = "range-container">
             <div className="Range">

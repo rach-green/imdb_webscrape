@@ -21,4 +21,7 @@ module.exports = function(app) {
   app.route('/all/:rfield/:value1/:value2/:sfield/:phrase/:vfield/:value/:pfield/:person')
     .get(movieList.list_by_all)
 
+  app.route('/analytics/:json')
+    .get(movieList.list_by_json)
+
 };
