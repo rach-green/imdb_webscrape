@@ -5,6 +5,7 @@ import Search from '../components/Search';
 import RatingButton from '../components/RatingButton';
 import Statistic from '../components/Statistic';
 import MovieInfo from '../components/MovieInfo';
+import Form from '../components/Form';
 
 
 //export default says return this render function. import this class when you import this file no matter what.
@@ -112,6 +113,13 @@ export default class Analytics extends React.Component{//react has a component c
         console.log("selection", this.state.selection)
     }
 
+    updateKeywords = words => {
+        this.state.selection.keywords = words;
+        console.log("update ");
+        this.callAPI();
+        console.log("selection", this.state.selection)
+    }
+
     updateYear = year => {
         if (this.state.selection.years != year){
             this.state.selection.years = year;
@@ -170,6 +178,8 @@ export default class Analytics extends React.Component{//react has a component c
                     <div className = "filters-column">
                         <div className = "analytics-title">cast</div>
                         <Search update = {this.updateCast} title = "cast"/>
+                        <div className = "analytics-title">keywords</div>
+                        <Form />
                     </div>
                 </div>
                 <div className = "horizantal-line"></div>
