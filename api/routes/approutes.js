@@ -8,7 +8,7 @@ module.exports = function(app) {
 
   app.route('/allmovies/directors')
     .get(movieList.list_all_directors)
-    
+
   app.route('/allmovies/writers')
     .get(movieList.list_all_writers)
 
@@ -29,5 +29,8 @@ module.exports = function(app) {
 
   app.route('/analytics/:json')
     .get(movieList.list_by_json)
+
+  app.route('/analytics/:field/:json')
+     .get(movieList.list_average)
 
 };

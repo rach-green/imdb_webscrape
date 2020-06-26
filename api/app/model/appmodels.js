@@ -67,6 +67,61 @@ Movie.getAllCast = function (result) {
             });
 };
 
+Movie.getAverage = function (field, json, result) {
+        console.log('entered average')
+        let data = JSON.parse(json);
+        let command = "Select AVG(" + field + ") from movies WHERE "
+        if (data["directors"].length != 0){
+        command += "("
+        for(var i = 0; i < data["directors"].length; i++){
+            command+= "directors LIKE '%" + (data["directors"])[i] + "%'" + " OR ";
+        }
+        command = command.slice(0,-4);
+        command += ") AND "
+        }
+        if (data["cast"].length != 0){
+        command += "("
+        for(var i = 0; i < data["cast"].length; i++){
+        command+= "cast LIKE '%" + (data["cast"])[i] + "%'" + " OR ";
+        }
+        command = command.slice(0,-4);
+        command += ") AND "
+        }
+        if (data["writers"].length != 0){
+        command += "("
+        for(var i = 0; i < data["writers"].length; i++){
+            command+= "writers LIKE '%" + (data["writers"])[i] + "%'" + " OR ";
+        }
+        command = command.slice(0,-4);
+        command += ") AND "
+        }
+        if (data["ratings"].length != 0){
+        command += "("
+        for(var i = 0; i < data["ratings"].length; i++){
+            command+= "rating = '" + (data["ratings"])[i] + "' OR ";
+        }
+        command = command.slice(0,-4);
+        command += ") AND "
+        }
+        if (data["years"].length != 0){
+        command += "("
+        command+= "year BETWEEN " + (data["years"])[0] + " AND " + (data["years"])[1];
+        command += ") AND "
+        }
+        command = command.slice(0,-5);
+        console.log("sql code: ",command);
+        sql.query(command, function (err, res) {
+                if(err) {
+                    console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                        //console.log('tasks : ', res);
+                        result(null, res);
+                }
+        });
+};
+
 Movie.getMoviebyField = function (field, value, result) {
         console.log("field function");
         //console.log("field", field);

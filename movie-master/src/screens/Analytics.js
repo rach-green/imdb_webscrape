@@ -21,20 +21,46 @@ export default class Analytics extends React.Component{//react has a component c
                     writers: [],
                     keywords: [],
                     years: []
-                    }
+                },
+          results: {
+                    rating: "",
+                    critic_score: "",
+                    gross: "",
+                    runtime: "",
+                    budget: ""
+                }
       };
     }
 
     /*this .setState calls render*/
     async callAPI() {
       let selection =  this.state.selection;
+      selection = JSON.stringify(selection);
       console.log("selection data", JSON.stringify(selection));
       // let response = await fetch(`/all/year/${selection.years[0]}/${selection.years[1]}/0/0/rating/${selection.ratings[selection.ratings.length-1]}/directors/${selection.people[0]}`)//await keyword makes it wait for fetch
-      let response = await fetch(`/analytics/${JSON.stringify(selection)}`);
-      console.log("fetch complete");
+      let response = await fetch(`/analytics/${selection}`);
       let movies = await response.json();
       this.setState({ movies: movies});
+
+      let response2 = await fetch(`/analytics/critic_score/${selection}`);
+      let score = await response2.json();
+      console.log('score', score)
+      this.state.results.critic_score =  ((score[0])['AVG(critic_score)']).toFixed(2)
+
+      let response3 = await fetch(`/analytics/gross/${selection}`);
+      let gross = await response3.json();
+      console.log('gross', gross)
+      this.state.results.gross =  (gross[0])['AVG(gross)'].toFixed()
+
+      let response4 = await fetch(`/analytics/runtime/${selection}`);
+      let runtime = await response4.json();
+      console.log('runtime', runtime)
+      this.state.results.runtime =  (runtime[0])['AVG(runtime)'].toFixed()
+
+      this.forceUpdate()
+
   }
+
 
 
     async componentDidMount() {
@@ -124,9 +150,9 @@ export default class Analytics extends React.Component{//react has a component c
                         <div className = "analytics-header">your analytics</div>
                         <div className = "analtics-results">
                             <Statistic header = "average rating" body = "R"/>
-                            <Statistic header = "average critic score" body = "9.5"/>
-                            <Statistic header = "average gross revenue" body = "$2000000"/>
-                            <Statistic header = "average runtime" body = "120min"/>
+                            <Statistic header = "average critic score" body = {this.state.results.critic_score}/>
+                            <Statistic header = "average gross revenue" body = {"$" + this.state.results.gross}/>
+                            <Statistic header = "average runtime" body = {this.state.results.runtime+ "min"}/>
                             <Statistic header = "average budget" body = "$1000000"/>
                         </div>
                     </div>
