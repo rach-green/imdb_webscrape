@@ -33,4 +33,10 @@ module.exports = function(app) {
   app.route('/analytics/:field/:json')
      .get(movieList.list_average)
 
+  app.route('/avg/:json')
+     .get(movieList.list_all_average)
+
+     app.route('/avg/rating/:json')
+        .get(movieList.list_avg_rating)
+
 };

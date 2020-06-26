@@ -259,6 +259,122 @@ Movie.getMoviesbyJson = function (json, result) {
         });
 };
 
+Movie.getAllAvg = function (json, result) {
+    console.log("allAvg function");
+    let command = "Select AVG(gross), AVG(critic_score), AVG(year), AVG(budget), AVG(runtime), AVG(rating) FROM movies WHERE ";
+    //data hold json object.
+    let data = JSON.parse(json);
+    if (data["directors"].length != 0){
+    command += "("
+    for(var i = 0; i < data["directors"].length; i++){
+        command+= "directors LIKE '%" + (data["directors"])[i] + "%'" + " OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["cast"].length != 0){
+    command += "("
+    for(var i = 0; i < data["cast"].length; i++){
+        command+= "cast LIKE '%" + (data["cast"])[i] + "%'" + " OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["writers"].length != 0){
+    command += "("
+    for(var i = 0; i < data["writers"].length; i++){
+        command+= "writers LIKE '%" + (data["writers"])[i] + "%'" + " OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["ratings"].length != 0){
+    command += "("
+    for(var i = 0; i < data["ratings"].length; i++){
+        command+= "rating = '" + (data["ratings"])[i] + "' OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["years"].length != 0){
+    command += "("
+    command+= "year BETWEEN " + (data["years"])[0] + " AND " + (data["years"])[1];
+    command += ") AND "
+    }
+    command = command.slice(0,-5);
 
+    console.log("sql code: ",command);
+    sql.query(command, function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(null, err);
+            }
+            else{
+                    console.log('tasks : ', res);
+                    result(null, res);
+            }
+
+        });
+
+}
+
+Movie.getAvgRating = function (json, result) {
+    console.log("avgRating function");
+    let command = "Select rating, Count(*) FROM movies WHERE ";
+    //data hold json object.
+    let data = JSON.parse(json);
+    if (data["directors"].length != 0){
+    command += "("
+    for(var i = 0; i < data["directors"].length; i++){
+        command+= "directors LIKE '%" + (data["directors"])[i] + "%'" + " OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["cast"].length != 0){
+    command += "("
+    for(var i = 0; i < data["cast"].length; i++){
+        command+= "cast LIKE '%" + (data["cast"])[i] + "%'" + " OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["writers"].length != 0){
+    command += "("
+    for(var i = 0; i < data["writers"].length; i++){
+        command+= "writers LIKE '%" + (data["writers"])[i] + "%'" + " OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["ratings"].length != 0){
+    command += "("
+    for(var i = 0; i < data["ratings"].length; i++){
+        command+= "rating = '" + (data["ratings"])[i] + "' OR ";
+    }
+    command = command.slice(0,-4);
+    command += ") AND "
+    }
+    if (data["years"].length != 0){
+    command += "("
+    command+= "year BETWEEN " + (data["years"])[0] + " AND " + (data["years"])[1];
+    command += ") AND "
+    }
+    command = command.slice(0,-5);
+    command += " GROUP BY rating";
+
+    console.log("sql code: ",command);
+    sql.query(command, function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(null, err);
+            }
+            else{
+                    console.log('tasks : ', res);
+                    result(null, res);
+            }
+
+        });
+}
 
 module.exports= Movie;

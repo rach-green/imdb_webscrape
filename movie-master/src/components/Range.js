@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import { useRanger } from "react-ranger";
 
 function Range(props) {
-  const [values, setValues] = React.useState([1900, 2020]);
+  const [values, setValues] = React.useState([props.min, props.max]);
 
   const { getTrackProps, handles } = useRanger({
-    min: 1900,
-    max: 2020,
-    stepSize: 1,
+    min: props.min,
+    max: props.max,
+    stepSize: props.step,
     values,
     onChange: setValues
   });

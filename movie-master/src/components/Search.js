@@ -35,7 +35,7 @@ export default class Search extends Component {
   async componentDidMount() {
     await this.callAPI();
     this.forceUpdate()//need to forceUpdate so SearchBox re-renders
-    }
+ }
 
   //array storing names that are currently selected/shown below search bar
   fields = []

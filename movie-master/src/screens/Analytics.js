@@ -20,14 +20,16 @@ export default class Analytics extends React.Component{//react has a component c
                     cast: [],
                     writers: [],
                     keywords: [],
-                    years: []
+                    years: [],
+                    scores: []
                 },
           results: {
                     rating: "",
                     critic_score: "",
                     gross: "",
                     runtime: "",
-                    budget: ""
+                    budget: "",
+                    year: ""
                 }
       };
     }
@@ -42,20 +44,34 @@ export default class Analytics extends React.Component{//react has a component c
       let movies = await response.json();
       this.setState({ movies: movies});
 
-      let response2 = await fetch(`/analytics/critic_score/${selection}`);
-      let score = await response2.json();
-      console.log('score', score)
+      // let response2 = await fetch(`/analytics/critic_score/${selection}`);
+      // let score = await response2.json();
+      // console.log('score', score)
+      // this.state.results.critic_score =  ((score[0])['AVG(critic_score)']).toFixed(2)
+      //
+      // let response3 = await fetch(`/analytics/gross/${selection}`);
+      // let gross = await response3.json();
+      // console.log('gross', gross)
+      // this.state.results.gross =  (gross[0])['AVG(gross)'].toFixed()
+      //
+      // let response4 = await fetch(`/analytics/runtime/${selection}`);
+      // let runtime = await response4.json();
+      // console.log('runtime', runtime)
+      // this.state.results.runtime =  (runtime[0])['AVG(runtime)'].toFixed()
+
+      let response5 = await fetch(`/avg/${selection}`);
+      let score = await response5.json();
+      console.log('scores', score)
       this.state.results.critic_score =  ((score[0])['AVG(critic_score)']).toFixed(2)
+      this.state.results.year =  ((score[0])['AVG(year)']).toFixed()
+      this.state.results.budget =  ((score[0])['AVG(budget)']).toFixed()
+      this.state.results.gross =  ((score[0])['AVG(gross)']).toFixed()
+      this.state.results.runtime = ((score[0])['AVG(runtime)']).toFixed()
 
-      let response3 = await fetch(`/analytics/gross/${selection}`);
-      let gross = await response3.json();
-      console.log('gross', gross)
-      this.state.results.gross =  (gross[0])['AVG(gross)'].toFixed()
-
-      let response4 = await fetch(`/analytics/runtime/${selection}`);
-      let runtime = await response4.json();
-      console.log('runtime', runtime)
-      this.state.results.runtime =  (runtime[0])['AVG(runtime)'].toFixed()
+      let response6 = await fetch(`/avg/rating/${selection}`);
+      let score2 = await response6.json();
+      console.log('scores', score2)
+      this.state.results.rating =  ((score2[0])['rating']);
 
       this.forceUpdate()
 
@@ -104,6 +120,14 @@ export default class Analytics extends React.Component{//react has a component c
         console.log("selection", this.state.selection)
     }
 
+    updateScore = score => {
+        if (this.state.selection.scores != score){
+            this.state.selection.scores = score;
+            this.callAPI();
+        }
+        console.log("selection", this.state.selection)
+    }
+
     updateWriters = people => {
         this.state.selection.writers = people;
         console.log("update ");
@@ -130,7 +154,11 @@ export default class Analytics extends React.Component{//react has a component c
                         </div>
                         <div className = "range-div">
                             <div className = "analytics-title">years</div>
-                            <Range update = {this.updateYear}/>
+                            <Range min = {1900} max = {2020} step = {1} update = {this.updateYear}/>
+                        </div>
+                        <div className = "range-div">
+                            <div className = "analytics-title">critic score</div>
+                            <Range min = {0} max = {10} step = {0.5} update = {this.updateScore}/>
                         </div>
                     </div>
                     <div className = "filters-column">
@@ -149,11 +177,12 @@ export default class Analytics extends React.Component{//react has a component c
                     <div className = "analytics-result-container">
                         <div className = "analytics-header">your analytics</div>
                         <div className = "analtics-results">
-                            <Statistic header = "average rating" body = "R"/>
+                            <Statistic header = "average rating" body = {this.state.results.rating}/>
                             <Statistic header = "average critic score" body = {this.state.results.critic_score}/>
                             <Statistic header = "average gross revenue" body = {"$" + this.state.results.gross}/>
                             <Statistic header = "average runtime" body = {this.state.results.runtime+ "min"}/>
-                            <Statistic header = "average budget" body = "$1000000"/>
+                            <Statistic header = "average budget" body = {"$" + this.state.results.budget}/>
+                            <Statistic header = "average year released" body = {this.state.results.year}/>
                         </div>
                     </div>
                     <div className = "analytics-movies-container">

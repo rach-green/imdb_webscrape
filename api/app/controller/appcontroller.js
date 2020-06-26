@@ -115,3 +115,27 @@ exports.list_average = function(req, res) {
     res.send(movie);
   });
 };
+
+exports.list_all_average = function(req, res) {
+    //console.log("params", req.params);
+    console.log("list_by_json json string", req.params.json);
+  Movie.getAllAvg(req.params.json, function(err, movie) {
+    console.log('controller')
+    if (err)
+      res.send(err);
+      console.log('res', movie);
+    res.send(movie);
+  });
+};
+
+exports.list_avg_rating = function(req, res) {
+    //console.log("params", req.params);
+    console.log("list_avg_rating json string", req.params.json);
+  Movie.getAvgRating(req.params.json, function(err, movie) {
+    console.log('controller')
+    if (err)
+      res.send(err);
+      console.log('res', movie);
+    res.send(movie);
+  });
+};
