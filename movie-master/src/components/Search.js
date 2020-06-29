@@ -72,13 +72,18 @@ export default class Search extends Component {
         onSelect={record => this.addField(record)}
         dropDownHoverColor = "rgba(15, 76, 129, 0.2)"
         />
-        <div className = "search-list">
-        {this.fields.map((name, index) => (
-            <div key={index} className = "name-button">
-                <div className = "name-x-button" onClick = {record => this.removeField(index)}>x</div>
-                {name.value}
-            </div>
+        <div className="input-tag">
+          <ul className="input-tag__tags">
+            {this.fields.map((name, index) => (
+                <li key={index}>
+                  {name.value}
+                  <button type="button" onClick={() => { this.removeField(index); }}>+</button>
+                </li>
+
+                // <div className = "name-x-button" onClick = {record => this.removeField(index)}>x</div>
+                // {name.value}
         ))}
+          </ul>
         </div>
       </div>
   );

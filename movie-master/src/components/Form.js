@@ -37,13 +37,14 @@ export default class Form extends React.Component {
     return (
       <div className="input-tag">
         <ul className="input-tag__tags">
+          <li className="input-tag__tags__input"><input class = "input-tags" type="text" onKeyDown={this.inputKeyDown} ref={c => { this.tagInput = c; }} /></li>
           { tags.map((tag, i) => (
             <li key={tag}>
               {tag}
               <button type="button" onClick={() => { this.removeTag(i); }}>+</button>
             </li>
           ))}
-          <li className="input-tag__tags__input"><input type="text" onKeyDown={this.inputKeyDown} ref={c => { this.tagInput = c; }} /></li>
+
         </ul>
       </div>
     );

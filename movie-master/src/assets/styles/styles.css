@@ -157,6 +157,9 @@
 
 .search-container{
     width: 20vw;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .analytics-container{
@@ -351,20 +354,30 @@
 }
 
 .input-tag {
-  background: white;
-  border: 1px solid #d6d6d6;
+  background: #F1F0E2;
+  /* border: 1px solid #d6d6d6; */
   border-radius: 2px;
   display: flex;
   flex-wrap: wrap;
   padding: 5px 5px 0;
+  max-height: 17vh;
+  overflow-y: scroll;
+
 }
 
 .input-tag input {
-  border: none;
+  padding: 10px 20px;
+  height: 40px;
+  border: 1px solid #cacaca96;
+  border-radius: 5px;
+  background-color: rgba(15, 76, 129, 0.2);
   width: 100%;
 }
 
 .input-tag__tags {
+  font-family: "Lato", sans-serif;
+  font-size: 15px;
+  font-weight: normal;
   display: inline-flex;
   flex-wrap: wrap;
   margin: 0;
@@ -374,11 +387,10 @@
 
 .input-tag__tags li {
   align-items: center;
-  background: #85A3BF;
+  background: rgba(15, 76, 129, 0.2);
   border-radius: 2px;
-  color: white;
+  color: #2A2A35;
   display: flex;
-  font-weight: 300;
   list-style: none;
   margin-bottom: 5px;
   margin-right: 5px;
@@ -386,9 +398,10 @@
 }
 
 .input-tag__tags li button {
+
   align-items: center;
   appearance: none;
-  background: #333333;
+  background: #2A2A35;
   border: none;
   border-radius: 50%;
   color: white;
@@ -405,7 +418,11 @@
 }
 
 .input-tag__tags li.input-tag__tags__input {
-  background: none;
+  background: #F1F0E2;
   flex-grow: 1;
   padding: 0;
+}
+
+.input-tags{
+    color: black;
 }
