@@ -235,7 +235,7 @@ Movie.getMoviesbyJson = function (json, result) {
     if (data["keywords"].length != 0){
         command += "("
         for(var i = 0; i < data["keywords"].length; i++){
-            // command+= "storyline LIKE '%" + (data["keywords"])[i] + "%'" + " OR ";
+            command+= "storyline LIKE '%" + (data["keywords"])[i] + "%'" + " OR ";
             command+= "summary LIKE '%" + (data["keywords"])[i] + "%'" + " OR ";
         }
         command = command.slice(0,-4);
@@ -306,7 +306,7 @@ Movie.getAllAvg = function (json, result) {
     if (data["keywords"].length != 0){
         command += "("
         for(var i = 0; i < data["keywords"].length; i++){
-            // command+= "storyline LIKE '%" + (data["keywords"])[i] + "%'" + " OR ";
+            command+= "storyline LIKE '%" + (data["keywords"])[i] + "%'" + " OR ";
             command+= "summary LIKE '%" + (data["keywords"])[i] + "%'" + " OR ";
         }
         command = command.slice(0,-4);
@@ -371,6 +371,15 @@ Movie.getAvgRating = function (json, result) {
         command += "("
         for(var i = 0; i < data["writers"].length; i++){
             command+= "writers LIKE '%" + (data["writers"])[i] + "%'" + " OR ";
+        }
+        command = command.slice(0,-4);
+        command += ") AND "
+    }
+    if (data["keywords"].length != 0){
+        command += "("
+        for(var i = 0; i < data["keywords"].length; i++){
+            command+= "storyline LIKE '%" + (data["keywords"])[i] + "%'" + " OR ";
+            command+= "summary LIKE '%" + (data["keywords"])[i] + "%'" + " OR ";
         }
         command = command.slice(0,-4);
         command += ") AND "
