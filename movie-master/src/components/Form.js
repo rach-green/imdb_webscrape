@@ -1,8 +1,8 @@
 import React from 'react'
 
 export default class Form extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       tags: [
@@ -16,6 +16,7 @@ export default class Form extends React.Component {
     const newTags = [ ...this.state.tags ];
     newTags.splice(i, 1);
     this.setState({ tags: newTags });
+    this.props.update(newTags);
   }
 
   inputKeyDown = (e) => {
@@ -25,6 +26,7 @@ export default class Form extends React.Component {
         return;
       }
       this.setState({ tags: [...this.state.tags, val]});
+      this.props.update([...this.state.tags, val]);
       this.tagInput.value = null;
     } else if (e.key === 'Backspace' && !val) {
       this.removeTag(this.state.tags.length - 1);
@@ -38,13 +40,14 @@ export default class Form extends React.Component {
       <div className="input-tag">
         <ul className="input-tag__tags">
           <li className="input-tag__tags__input"><input class = "input-tags" type="text" onKeyDown={this.inputKeyDown} ref={c => { this.tagInput = c; }} /></li>
-          { tags.map((tag, i) => (
-            <li key={tag}>
-              {tag}
-              <button type="button" onClick={() => { this.removeTag(i); }}>+</button>
-            </li>
-          ))}
-
+          <div className = "input-tag-list">
+              { tags.map((tag, i) => (
+                <li key={tag}>
+                  {tag}
+                  <button type="button" onClick={() => { this.removeTag(i); }}>+</button>
+                </li>
+              ))}
+         </div>
         </ul>
       </div>
     );

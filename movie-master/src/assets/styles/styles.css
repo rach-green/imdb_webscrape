@@ -159,6 +159,7 @@
     width: 20vw;
     display: flex;
     flex-direction: column;
+    margin-bottom: 3vh;
 
 }
 
@@ -383,6 +384,8 @@
   margin: 0;
   padding: 0;
   width: 100%;
+  flex-direction: column;
+
 }
 
 .input-tag__tags li {
@@ -423,6 +426,18 @@
   padding: 0;
 }
 
+.input-tag__tags ul{
+    display: flex;
+    flex-direction: row;
+}
+
 .input-tags{
     color: black;
+}
+
+.input-tag-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
 }

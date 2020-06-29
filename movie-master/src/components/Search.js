@@ -74,15 +74,17 @@ export default class Search extends Component {
         />
         <div className="input-tag">
           <ul className="input-tag__tags">
-            {this.fields.map((name, index) => (
-                <li key={index}>
-                  {name.value}
-                  <button type="button" onClick={() => { this.removeField(index); }}>+</button>
-                </li>
+            <div className = "input-tag-list">
+                {this.fields.map((name, index) => (
+                    <li key={index}>
+                      {name.value}
+                      <button type="button" onClick={() => { this.removeField(index); }}>+</button>
+                    </li>
 
-                // <div className = "name-x-button" onClick = {record => this.removeField(index)}>x</div>
-                // {name.value}
-        ))}
+                    // <div className = "name-x-button" onClick = {record => this.removeField(index)}>x</div>
+                    // {name.value}
+            ))}
+            </div>
           </ul>
         </div>
       </div>

@@ -25,12 +25,12 @@ export default class Analytics extends React.Component{//react has a component c
                     scores: []
                 },
           results: {
-                    rating: "",
-                    critic_score: "",
-                    gross: "",
-                    runtime: "",
-                    budget: "",
-                    year: ""
+                    rating: "none",
+                    critic_score: "none",
+                    gross: "0",
+                    runtime: "none",
+                    budget: "0",
+                    year: "none"
                 }
       };
     }
@@ -62,12 +62,29 @@ export default class Analytics extends React.Component{//react has a component c
 
       let response5 = await fetch(`/avg/${selection}`);
       let score = await response5.json();
-      console.log('scores', score)
-      this.state.results.critic_score =  ((score[0])['AVG(critic_score)']).toFixed(2)
-      this.state.results.year =  ((score[0])['AVG(year)']).toFixed()
-      this.state.results.budget =  ((score[0])['AVG(budget)']).toFixed()
-      this.state.results.gross =  ((score[0])['AVG(gross)']).toFixed()
-      this.state.results.runtime = ((score[0])['AVG(runtime)']).toFixed()
+      console.log('scores', score);
+      console.log('null score', (score[0])['AVG(critic_score)']);
+      if (((score[0])['AVG(critic_score)']) != null) {
+          this.state.results.critic_score =  ((score[0])['AVG(critic_score)']).toFixed(2)
+      }
+      else{this.state.results.critic_score = "none"}
+      //this.state.results.critic_score =  ((score[0])['AVG(critic_score)']).toFixed(2)
+      if (((score[0])['AVG(year)']) != null) {
+          this.state.results.year =  ((score[0])['AVG(year)']).toFixed()
+      }
+      else{this.state.results.year = "none"}
+      if (((score[0])['AVG(budget)']) != null) {
+          this.state.results.budget =  ((score[0])['AVG(budget)']).toFixed()
+      }
+      else{this.state.results.budget = "0"}
+      if (((score[0])['AVG(gross)']) != null) {
+          this.state.results.gross =  ((score[0])['AVG(gross)']).toFixed()
+      }
+      else{this.state.results.gross = "0"}
+      if (((score[0])['AVG(runtime)']) != null) {
+          this.state.results.runtime = ((score[0])['AVG(runtime)']).toFixed()
+      }
+      else{this.state.results.runtime = "none"}
 
       let response6 = await fetch(`/avg/rating/${selection}`);
       let score2 = await response6.json();
@@ -143,6 +160,13 @@ export default class Analytics extends React.Component{//react has a component c
         console.log("selection", this.state.selection)
     }
 
+    updateKeywords = words => {
+        this.state.selection.keywords = words;
+        console.log("update keywords", words);
+        this.callAPI();
+        console.log("selection", this.state.selection)
+    }
+
     render(){
         return(
             <div className = "analytics-container">
@@ -179,7 +203,7 @@ export default class Analytics extends React.Component{//react has a component c
                         <div className = "analytics-title">cast</div>
                         <Search update = {this.updateCast} title = "cast"/>
                         <div className = "analytics-title">keywords</div>
-                        <Form />
+                        <Form update = {this.updateKeywords}/>
                     </div>
                 </div>
                 <div className = "horizantal-line"></div>
