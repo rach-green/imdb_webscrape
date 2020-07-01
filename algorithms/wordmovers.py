@@ -17,7 +17,8 @@ def addColumn(table_name, column_title, type):
 
 connection = mysqlhelpers.Connect("mydatabase", "wordmovers", "m_1")
 connection.dropTB("wordmovers")
-connection.createTB("wordmovers", "m_1")
+connection.createTBWM("wordmovers")
+addColumn("wordmovers", "m_1", "INT")
 addColumn("wordmovers", "m_2", "INT")
 addColumn("wordmovers", "value", "DOUBLE")
 
