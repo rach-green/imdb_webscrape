@@ -1,4 +1,5 @@
 import gensim.downloader as api
+from pyemd import emd
 from nltk.corpus import stopwords
 from nltk import download
 
@@ -16,6 +17,6 @@ second = "In Gotham City mentally troubled comedian Arthur Fleck is disregarded 
 first = preprocess(first)
 second = preprocess(second)
 
-distance = model.wmdistance(sentence_obama, sentence_president)
+distance = model.wmdistance(first, second)
 print('distance = %.4f' % distance)
 model = api.load('word2vec-google-news-300')
