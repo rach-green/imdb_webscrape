@@ -24,6 +24,21 @@ Movie.getAllMovie = function (result) {
             });
 };
 
+Movie.getSummarybyId = function (id, result) {
+        console.log("all table function");
+        sql.query("Select summary from movies where id = " + id, function (err, res) {
+                if(err) {
+                    //console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  //console.log('tasks : ', res);
+
+                 result(null, res);
+                }
+            });
+};
+
 Movie.getAllWriters = function (result) {
         console.log("all writers function");
         sql.query("Select writers from movies", function (err, res) {

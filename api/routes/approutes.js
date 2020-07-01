@@ -6,6 +6,9 @@ module.exports = function(app) {
   app.route('/allmovies')
     .get(movieList.list_all_movies)
 
+  app.route('/allsummaries/:id')
+    .get(movieList.list_summaries)
+
   app.route('/allmovies/directors')
     .get(movieList.list_all_directors)
 

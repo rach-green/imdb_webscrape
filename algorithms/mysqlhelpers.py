@@ -92,8 +92,7 @@ class Connect():
         self.cursor.execute("SELECT * FROM wordmovers")
         records = self.cursor.fetchall()
         for row in records:
-            for x in row:
-                print(x)
+            print(row)
 
     def closeDB(self):
         self.useDB()

@@ -139,3 +139,14 @@ exports.list_avg_rating = function(req, res) {
     res.send(movie);
   });
 };
+
+exports.list_summaries = function(req, res) {
+    //console.log("params", req.params);
+  Movie.getSummarybyId(req.params.id, function(err, movie) {
+    console.log('controller')
+    if (err)
+      res.send(err);
+      console.log('res', movie);
+    res.send(movie);
+  });
+};
