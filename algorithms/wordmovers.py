@@ -35,7 +35,10 @@ for movie_1 in range(1,1001):
             sentence_two = sentence_two.json()[0]['summary']
             second = preprocess(sentence_two)
             distance = model.wmdistance(first, second)
+<<<<<<< HEAD
             print("added ids "+ str(movie_1) + " & " + str(movie_2))
+=======
+>>>>>>> d4cfdbaf34cc2c054948a6abecf71b867ddc4fa2
             connection.addWMEntry(str(movie_1), str(movie_2), distance)
 
 connection.printWM()
