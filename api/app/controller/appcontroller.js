@@ -69,6 +69,17 @@ exports.list_by_phrase = function(req, res) {
     res.send(movie);
   });
 };
+exports.list_by_phrase2 = function(req, res) {
+    //console.log("params", req.params);
+  Movie.getMovieby2Phrase(req.params.field, req.params.phrase1, req.params.phrase2, function(err, movie) {
+    //console.log('controller')
+    if (err)
+      res.send(err);
+      //console.log('res', movie);
+    res.send(movie);
+  });
+};
+
 
 exports.list_by_range = function(req, res) {
     //console.log("params", req.params);
@@ -76,7 +87,7 @@ exports.list_by_range = function(req, res) {
     //console.log('controller')
     if (err)
       res.send(err);
-      //console.log('res', movie);
+      console.log('res', movie);
     res.send(movie);
   });
 };
@@ -91,6 +102,17 @@ exports.list_by_all = function(req, res) {
     res.send(movie);
   });
 };
+exports.list_similar_text = function(req, res) {
+    //console.log("params", req.params);
+  Movie.getSimilarText(req.params.id, function(err, movie) {
+    //console.log('controller')
+    if (err)
+      res.send(err);
+      //console.log('res', movie);
+    res.send(movie);
+  });
+};
+
 
 exports.list_by_json = function(req, res) {
     //console.log("params", req.params);
@@ -151,6 +173,18 @@ exports.list_under_three = function(req, res) {
     res.send(movie);
   });
 };
+exports.list_genres_fast= function(req, res) {
+    //console.log("params", req.params);
+    // console.log("list_avg_rating json string", req.params.json);
+  Movie.getGenresFast(function(err, movie) {
+    console.log('controller')
+    if (err)
+      res.send(err);
+      console.log('res', movie);
+    res.send(movie);
+  });
+};
+
 
 
 

@@ -39,6 +39,35 @@ Movie.getUnderThree = function (result) {
             });
 };
 
+Movie.getSimilarText = function (id, result) {
+        console.log("all table function");
+        sql.query("Select * from wordmovers where m_1 = " + id + " AND value < 3", function (err, res) {
+                if(err) {
+                    //console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  //console.log('tasks : ', res);
+
+                 result(null, res);
+                }
+            });
+};
+Movie.getGenresFast = function (result) {
+        console.log("all table function");
+        sql.query("Select languages, Count(*) FROM movies group by languages", function (err, res) {
+                if(err) {
+                    //console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  //console.log('tasks : ', res);
+
+                 result(null, res);
+                }
+            });
+};
+
 Movie.getSummarybyId = function (id, result) {
         console.log("all table function");
         sql.query("Select summary from movies where id = " + id, function (err, res) {
@@ -173,6 +202,21 @@ Movie.getMoviebyField = function (field, value, result) {
 Movie.getMoviebyPhrase = function (field, phrase, result) {
         console.log("phrase function");
         let command = "SELECT * FROM movies WHERE " + field + " LIKE '%" + phrase + "%'";
+        //console.log("sql code",command);
+        sql.query(command, function (err, res) {
+                if(err) {
+                    //console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  //console.log('tasks : ', res);
+                 result(null, res);
+                }
+            });
+};
+Movie.getMovieby2Phrase = function (field, phrase1, phrase2, result) {
+        console.log("phrase function");
+        let command = "SELECT * FROM movies WHERE " + field + " LIKE '%" + phrase1 + "%' AND " + field + " LIKE '%" + phrase2 + "%'";
         //console.log("sql code",command);
         sql.query(command, function (err, res) {
                 if(err) {

@@ -24,6 +24,9 @@ module.exports = function(app) {
   app.route('/allmovies/phrase/:field/:phrase')
     .get(movieList.list_by_phrase)
 
+  app.route('/allmovies/phrase/:field/:phrase1/:phrase2')
+    .get(movieList.list_by_phrase2)
+
   app.route('/allmovies/range/:field/:value1/:value2')
     .get(movieList.list_by_range)
 
@@ -44,5 +47,11 @@ module.exports = function(app) {
 
   app.route('/underthree')
      .get(movieList.list_under_three)
+
+  app.route('/allgenres')
+     .get(movieList.list_genres_fast)
+
+  app.route('/allsimilartext/:id')
+     .get(movieList.list_similar_text)
 
 };
