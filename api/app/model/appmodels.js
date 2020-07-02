@@ -24,6 +24,21 @@ Movie.getAllMovie = function (result) {
             });
 };
 
+Movie.getUnderThree = function (result) {
+        console.log("all table function");
+        sql.query("Select * from wordmovers where value < 2.8", function (err, res) {
+                if(err) {
+                    //console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  //console.log('tasks : ', res);
+
+                 result(null, res);
+                }
+            });
+};
+
 Movie.getSummarybyId = function (id, result) {
         console.log("all table function");
         sql.query("Select summary from movies where id = " + id, function (err, res) {

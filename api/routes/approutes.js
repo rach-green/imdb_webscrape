@@ -39,7 +39,10 @@ module.exports = function(app) {
   app.route('/avg/:json')
      .get(movieList.list_all_average)
 
-     app.route('/avg/rating/:json')
-        .get(movieList.list_avg_rating)
+  app.route('/avg/rating/:json')
+     .get(movieList.list_avg_rating)
+
+  app.route('/underthree')
+     .get(movieList.list_under_three)
 
 };
