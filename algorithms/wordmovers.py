@@ -26,16 +26,16 @@ def preprocess(sentence):
     return [w for w in sentence.lower().split() if w not in stop_words]
 
 for movie_1 in range(1,1001):
+    sentence_one = requests.get('http://localhost:9000/allsummaries/' + str(movie_1))
+    sentence_one = sentence_one.json()[0]['summary']
+    first = preprocess(sentence_one)
     for movie_2 in range(1,1001):
         if movie_1 != movie_2:
-            sentence_one = requests.get('http://localhost:9000/allsummaries/' + str(movie_1))
-            sentence_one = sentence_one.json()[0]['summary']
             sentence_two = requests.get('http://localhost:9000/allsummaries/' + str(movie_2))
             sentence_two = sentence_two.json()[0]['summary']
-            first = preprocess(sentence_one)
             second = preprocess(sentence_two)
             distance = model.wmdistance(first, second)
-
+            print("added ids "+ str(movie_1) + " & " + str(movie_2))
             connection.addWMEntry(str(movie_1), str(movie_2), distance)
 
 connection.printWM()
