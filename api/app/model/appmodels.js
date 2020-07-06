@@ -488,4 +488,71 @@ Movie.getAvgRating = function (json, result) {
         });
 }
 
+Movie.getBucket = function (moviejson, result) {
+        console.log("bucket function");
+        let data = JSON.parse(moviejson);
+        let command = "Select m_2 from wordmovers where value < 2.5 AND m_1 = " + data["id"]  + " UNION Select id from movies WHERE ";
+        let arr = data["directors"].split(", ");
+        if (arr.length != 0){
+            command += "("
+            for(var i = 0; i < arr.length; i++){
+                command+= "directors LIKE '%" + arr[i] + "%'" + " OR ";
+            }
+            command = command.slice(0,-4);
+            command += ") OR "
+        }
+        arr = data["cast"].split(", ");
+        if (arr.length != 0){
+            command += "("
+            for(var i = 0; i < arr.length; i++){
+                command+= "cast LIKE '%" + arr[i] + "%'" + " OR ";
+            }
+            command = command.slice(0,-4);
+            command += ") OR "
+        }
+        arr = data["writers"].split(", ");
+        if (arr.length != 0){
+            command += "("
+            for(var i = 0; i < arr.length; i++){
+                command+= "writers LIKE '%" + arr[i] + "%'" + " OR ";
+            }
+            command = command.slice(0,-4);
+            command += ") OR "
+        }
+        arr = data["genres"].split(", ");
+        if (arr.length != 0){
+            command += "("
+            for(var i = 0; i < arr.length; i++){
+                command+= "genres LIKE '%" + arr[i] + "%'" + " OR ";
+            }
+            command = command.slice(0,-4);
+            command += ") OR "
+        }
+        arr = data["languages"].split(", ");
+        if (arr.length != 0){
+            command += "("
+            for(var i = 0; i <arr.length; i++){
+                command+= "languages LIKE '%" + arr[i] + "%'" + " OR ";
+            }
+            command = command.slice(0,-4);
+            command += ") OR "
+        }
+        command += "(";
+        command+= "year BETWEEN " + (data["year"] - 1) + " AND " + (data["year"] + 1);
+        command += ")";
+
+        let command_test = "Select m_2 from wordmovers where value < 3 AND m_1 = " + data["id"];
+        //console.log("sql code",command);
+        sql.query(command_test, function (err, res) {
+                if(err) {
+                    //console.log("error: ", err);
+                    result(null, err);
+                }
+                else{
+                  //console.log('tasks : ', res);
+                 result(null, res);
+                }
+            });
+};
+
 module.exports= Movie;

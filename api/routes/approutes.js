@@ -54,4 +54,7 @@ module.exports = function(app) {
   app.route('/allsimilartext/:id')
      .get(movieList.list_similar_text)
 
+  app.route('/recommendation/:moviejson')
+    .get(movieList.rec_bucket)
+
 };

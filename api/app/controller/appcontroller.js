@@ -198,3 +198,14 @@ exports.list_summaries = function(req, res) {
     res.send(movie);
   });
 };
+
+exports.rec_bucket = function(req, res) {
+    //console.log("params", req.params);
+  Movie.getBucket(req.params.moviejson, function(err, movie) {
+    console.log('controller')
+    if (err)
+      res.send(err);
+      console.log('res', movie);
+    res.send(movie);
+  });
+};
