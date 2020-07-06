@@ -519,15 +519,15 @@ Movie.getBucket = function (moviejson, result) {
             command = command.slice(0,-4);
             command += ") OR "
         }
-        arr = data["genres"].split(", ");
-        if (arr.length != 0){
-            command += "("
-            for(var i = 0; i < arr.length; i++){
-                command+= "genres LIKE '%" + arr[i] + "%'" + " OR ";
-            }
-            command = command.slice(0,-4);
-            command += ") OR "
-        }
+        // arr = data["genres"].split(", ");
+        // if (arr.length != 0){
+        //     command += "("
+        //     for(var i = 0; i < arr.length; i++){
+        //         command+= "genres LIKE '%" + arr[i] + "%'" + " OR ";
+        //     }
+        //     command = command.slice(0,-4);
+        //     command += ") OR "
+        // }
         arr = data["languages"].split(", ");
         if (arr.length != 0){
             command += "("

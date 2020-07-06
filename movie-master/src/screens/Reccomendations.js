@@ -24,10 +24,12 @@ export default class Reccomendations extends React.Component{//react has a compo
 
   }
 
+  /*may want a function that uses /allmovies/field/:field/:value' to compare json to json for number of similarities*/
+
   async componentDidMount() {
     await this.callAPI();
   }
     render(){
-        return((<div>reccomendations</div>));
+        return((<div>Reccomendations</div>));
     }
 }
