@@ -533,6 +533,7 @@ Movie.getBucket = function (moviejson, result) {
             command += "("
             for(var i = 0; i <arr.length; i++){
                 if(arr[i] == "English"){
+                    console.log("lang is english");
                     command+= "languages LIKE '%" + "xxx" + "%'" + " OR ";
                 }
                 else{
