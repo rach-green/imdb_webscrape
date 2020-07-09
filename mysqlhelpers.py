@@ -4,9 +4,9 @@ import mysql.connector
 class Connect():
     def __init__(self, db_name, table_name, column_name):
         self.connection =  mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='dalehollow'
+            host='us-cdbr-east-02.cleardb.com',
+            user='b1e0b9a150f461',
+            password='373ee6e9'
             )
         self.cursor = self.connection.cursor()
         self.addDB(db_name)

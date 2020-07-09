@@ -53,10 +53,10 @@ const express = require('express'),
 const mysql = require('mysql');
 // connection configurations
 const mc = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'dalehollow',
-    database: 'mydatabase'
+    host: 'us-cdbr-east-02.cleardb.com',
+    user: 'b1e0b9a150f461',
+    password: '373ee6e9',
+    database: 'heroku_3bec028cbf30f77'
 });
 
 // connect to database

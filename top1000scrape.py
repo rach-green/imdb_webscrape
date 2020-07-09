@@ -221,7 +221,7 @@ url = 'https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&
 resp = requests.get(url)
 soup = BeautifulSoup(resp.text, features = "lxml")
 #constructor: making connect class object.
-connection = mysqlhelpers.Connect("mydatabase", "movies", "title")
+connection = mysqlhelpers.Connect("heroku_3bec028cbf30f77", "movies", "title")
 connection.dropTB("movies")
 connection.createTB("movies", "title")
 
