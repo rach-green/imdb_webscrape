@@ -28,6 +28,8 @@
   "scripts": {
     "client-install": "npm install --prefix imdb_webscrape",
     "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix imdb_webscrape",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
