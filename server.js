@@ -45,29 +45,37 @@
 // module.exports = app;
 
 const express = require('express'),
+  path = require('path'),
   app = express(),
   bodyParser = require('body-parser');
   port = process.env.PORT || 9000;
 
 
-const mysql = require('mysql');
+// const mysql = require('mysql');
 // connection configurations
-const mc = mysql.createConnection({
-    host: 'us-cdbr-east-02.cleardb.com',
-    user: 'b1e0b9a150f461',
-    password: '373ee6e9',
-    database: 'heroku_3bec028cbf30f77'
+// const mc = mysql.createConnection({
+//     host: 'us-cdbr-east-02.cleardb.com',
+//     user: 'b1e0b9a150f461',
+//     password: '373ee6e9',
+//     database: 'heroku_3bec028cbf30f77'
+// });
+//
+// // connect to database
+// mc.connect();
+
+app.use(express.static(path.join(__dirname, '/build')));
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/build')));
+    app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = '/build/index.html'));  })}
+
+app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/public/index.html'));})
+
+app.listen(port, (req, res) => {
+    console.log(`API server started on port: ${port}`);
 });
 
-// connect to database
-mc.connect();
-
-app.listen(port);
-
-console.log('API server started on: ' + port);
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 
 var routes = require('./api/routes/approutes'); //importing route
 routes(app); //register the route
