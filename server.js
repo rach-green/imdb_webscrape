@@ -66,9 +66,11 @@ const express = require('express'),
 app.use(express.static(path.join(__dirname, '/build')));
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/build')));
-    app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = '/build/index.html'));  })}
+    app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = '/public/index.html'));  })}
 
-app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/index.js'));})
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/public/index.html'));
+})
 
 app.listen(port, (req, res) => {
     console.log(`API server started on port: ${port}`);
