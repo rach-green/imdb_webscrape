@@ -4,9 +4,10 @@ import mysql.connector
 class Connect():
     def __init__(self, db_name, table_name, column_name):
         self.connection =  mysql.connector.connect(
-            host='us-cdbr-east-02.cleardb.com',
-            user='b1e0b9a150f461',
-            password='373ee6e9'
+            host     : process.env.RDS_HOSTNAME,
+            user     : process.env.RDS_USERNAME,
+            password : process.env.RDS_PASSWORD,
+            port     : process.env.RDS_PORT
             )
         self.cursor = self.connection.cursor()
         self.addDB(db_name)

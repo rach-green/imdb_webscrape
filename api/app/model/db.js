@@ -7,10 +7,10 @@ var mysql = require('mysql');
 //     database: 'mydatabase'
 // });
 var connection = mysql.createConnection({
-    host: 'us-cdbr-east-02.cleardb.com',
-    user: 'b1e0b9a150f461',
-    password: '373ee6e9',
-    database: 'heroku_3bec028cbf30f77'
+    host     : process.env.RDS_HOSTNAME,
+    user     : process.env.RDS_USERNAME,
+    password : process.env.RDS_PASSWORD,
+    port     : process.env.RDS_PORT
 });
 
 connection.connect(function(err) {
