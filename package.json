@@ -27,8 +27,8 @@
   },
   "scripts": {
     "client-install": "npm install --prefix imdb_webscrape",
-    "start": "node index.js",
-    "server": "nodemon index.js",
+    "start": "node server.js",
+    "server": "nodemon server.js",
     "client": "npm start --prefix imdb_webscrape",
     "build": "react-scripts build",
     "test": "react-scripts test",
